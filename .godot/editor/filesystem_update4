@@ -1,3 +1,5 @@
 res://scenes/game.tscn
 res://scenes/player.tscn
 res://scripts/player.gd
+res://scripts/interactive_items.gd
+res://scenes/interactive_items.tscn

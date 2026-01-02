@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://yj0dbit0cm6s"]
+[gd_scene load_steps=6 format=3 uid="uid://yj0dbit0cm6s"]
 
+[ext_resource type="PackedScene" uid="uid://013whxl85mrn" path="res://scenes/interactive_items.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ceux40ytl86a" path="res://scenes/player.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://b3uiihujmk5ns" path="res://asset/Tileset_Large.png" id="3_iywne"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(24.5, 34.25)
 
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("2_lnu2h")]
+z_index = 5
 position = Vector2(112, 58)
+collision_layer = 2
+collision_priority = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(112, 31)
@@ -18,3 +26,19 @@ zoom = Vector2(4, 4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(114, 81)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="interactive_items" parent="StaticBody2D2" instance=ExtResource("2_lbhrr")]
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/interactive_items"]
+texture_filter = 1
+position = Vector2(185, 62)
+texture = ExtResource("3_iywne")
+region_enabled = true
+region_rect = Rect2(180, 144.68527, 23.894684, 31.28415)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/interactive_items"]
+position = Vector2(184.75, 62.125)
+shape = SubResource("RectangleShape2D_lnu2h")
