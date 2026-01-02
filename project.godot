@@ -15,6 +15,11 @@ run/main_scene="uid://yj0dbit0cm6s"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="D:/Programming Languages/first attempt/records/record.avi"
+movie_writer/disable_vsync=true
+
 [rendering]
 
 renderer/rendering_method="mobile"

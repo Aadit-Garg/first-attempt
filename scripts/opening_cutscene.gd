@@ -37,17 +37,18 @@ const ADVANCE_ACTION := "ui_accept"
 # =============================================================================
 
 ## Dialogue lines using "Selective Hearing" BBCode formatting
-## Grey (#555555) = muffled/inaudible | Red + shake = traumatic keywords
+## The child only hears fragments - traumatic words pierce through the fog
+## "..." represents muffled, incomprehensible speech
 var dialogue_lines: Array[String] = [
-	"[color=#555555]...the results have come back and I'm afraid...[/color] [color=#ff0000][shake rate=20 level=10]TERMINAL[/shake][/color] [color=#555555]...condition confirms...[/color]",
+	"[color=#555555]...... results ......[/color] [color=#ff0000][shake rate=20 level=10]SERIOUS[/shake][/color] [color=#555555]......[/color]",
 	
-	"[color=#555555]...we've detected aggressive progression of the...[/color] [color=#ff0000][shake rate=20 level=10]DISEASE[/shake][/color] [color=#555555]...in the brain tissue...[/color]",
+	"[color=#555555]...... aggressive ......[/color] [color=#ff0000][shake rate=20 level=10]DISEASE[/shake][/color] [color=#555555]...... brain ......[/color]",
 	
-	"[color=#555555]...I understand this is difficult... the prognosis suggests...[/color] [color=#ff0000][shake rate=20 level=10]SIX MONTHS[/shake][/color] [color=#555555]...at the most...[/color]",
+	"[color=#555555]...... prognosis ......[/color] [color=#ff0000][shake rate=20 level=10]SIX MONTHS[/shake][/color] [color=#555555]...... at most ......[/color]",
 	
-	"[color=#555555]...we can manage the...[/color] [color=#ff0000][shake rate=20 level=10]PAIN[/shake][/color] [color=#555555]...but there is no...[/color] [color=#ff0000][shake rate=20 level=10]CURE[/shake][/color]",
+	"[color=#555555]...... manage ......[/color] [color=#ff0000][shake rate=20 level=10]PAIN[/shake][/color] [color=#555555]...... no ......[/color] [color=#ff0000][shake rate=20 level=10]CURE[/shake][/color]",
 	
-	"[color=#555555]...I'm so sorry... your child... they will...[/color] [color=#ff0000][shake rate=20 level=10]DIE[/shake][/color]"
+	"[color=#555555]...... sorry ...... your child ......[/color] [color=#ff0000][shake rate=20 level=10]WON'T SURVIVE[/shake][/color]"
 ]
 
 # =============================================================================
@@ -59,6 +60,7 @@ var dialogue_lines: Array[String] = [
 @onready var continue_indicator: Label = $DialogueUI/DialoguePanel/ContinueIndicator
 @onready var fade_overlay: ColorRect = $FadeOverlay
 @onready var mumble_audio: AudioStreamPlayer = $MumbleAudio
+@onready var typing_audio: AudioStreamPlayer = $TypingAudio
 @onready var swaying_light: PointLight2D = $Background/HospitalAmbience/SwayingLight
 
 # =============================================================================
@@ -97,10 +99,12 @@ func _ready() -> void:
 	dialogue_label.visible_ratio = 0.0
 	
 	# Start the camera zoom animation
-	_start_camera_zoom()
 	
 	# Start the light swaying animation
 	_start_light_sway()
+	
+	# Start the ambient mumble audio (plays continuously)
+	_start_mumble_audio()
 	
 	# Brief delay before starting dialogue (let the scene settle)
 	await get_tree().create_timer(1.0).timeout
@@ -153,8 +157,9 @@ func _show_dialogue_line() -> void:
 	# Start typing state
 	is_typing = true
 	
-	# Start the mumble audio
-	_start_mumble_audio()
+	# Start typing sound
+	if typing_audio.stream and not typing_audio.playing:
+		typing_audio.play()
 	
 	# Calculate duration based on visible characters (not BBCode tags)
 	var visible_char_count := _count_visible_characters(line)
@@ -173,8 +178,9 @@ func _on_typing_complete() -> void:
 	"""Called when the typewriter effect finishes."""
 	is_typing = false
 	
-	# Stop the mumble audio
-	_stop_mumble_audio()
+	# Stop typing sound
+	if typing_audio.playing:
+		typing_audio.stop()
 	
 	# Show continue indicator
 	continue_indicator.visible = true
@@ -222,19 +228,18 @@ func _advance_dialogue() -> void:
 # =============================================================================
 
 func _start_mumble_audio() -> void:
-	"""Start playing the mumble audio loop."""
-	if mumble_audio.stream:
+	"""Start playing the mumble audio continuously."""
+	if mumble_audio.stream and not mumble_audio.playing:
 		mumble_audio.play()
 
 
 func _stop_mumble_audio() -> void:
-	"""Stop the mumble audio."""
+	"""Fade out and stop the mumble audio."""
 	if mumble_audio.playing:
-		# Fade out the audio quickly rather than abrupt stop
+		# Fade out the audio smoothly
 		var audio_tween := create_tween()
-		audio_tween.tween_property(mumble_audio, "volume_db", -40.0, 0.2)
+		audio_tween.tween_property(mumble_audio, "volume_db", -40.0, 1.0)
 		audio_tween.tween_callback(mumble_audio.stop)
-		audio_tween.tween_callback(func(): mumble_audio.volume_db = -6.0)
 
 # =============================================================================
 # CAMERA & VISUAL EFFECTS
@@ -283,16 +288,65 @@ func _pulse_continue_indicator() -> void:
 # =============================================================================
 
 func _start_fade_out() -> void:
-	"""Begin the fade to black and scene transition."""
+	"""Begin the dramatic ending with text animation and fade to black."""
 	is_transitioning = true
 	
-	# Hide dialogue elements
+	# Hide continue indicator
 	continue_indicator.visible = false
 	
 	# Stop any ongoing audio
 	_stop_mumble_audio()
+	if typing_audio.playing:
+		typing_audio.stop()
 	
-	# Fade to black
+	# Hide the green panel background but keep panel in place (at bottom)
+	var panel = $DialogueUI/DialoguePanel
+	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	
+	# Show only the impact word, centered within the label
+	dialogue_label.text = "[center][color=#ff0000][shake rate=15 level=8]WON'T SURVIVE[/shake][/color][/center]"
+	dialogue_label.visible_ratio = 1.0
+	
+	# Set pivot for scaling from center of panel
+	panel.pivot_offset = panel.size / 2
+	
+	# Calculate target center position
+	var viewport_size = get_viewport().get_visible_rect().size
+	var target_y = (viewport_size.y / 2) - (panel.size.y / 2)
+	var current_y = panel.global_position.y
+	
+	# Get reference to background/image for fading
+	var background = $Background
+	var texture_rect = $TextureRect if has_node("TextureRect") else null
+	
+	# Animate: move text from bottom to center, zoom in, fade background to BLACK
+	var anim_tween := create_tween()
+	anim_tween.set_parallel(true)
+	anim_tween.set_ease(Tween.EASE_OUT)
+	anim_tween.set_trans(Tween.TRANS_SINE)
+	
+	# Move panel from bottom to center (3 seconds)
+	anim_tween.tween_property(panel, "global_position:y", target_y, 3.0)
+	
+	# Scale up text slowly (3 seconds)
+	anim_tween.tween_property(panel, "scale", Vector2(2.0, 2.0), 3.0)
+	
+	# Fade background to BLACK (change color, not just alpha)
+	anim_tween.tween_property(background, "color", Color(0, 0, 0, 1), 3.0)
+	if texture_rect:
+		anim_tween.tween_property(texture_rect, "modulate:a", 0.0, 3.0)
+	
+	await anim_tween.finished
+	
+	# Hold for dramatic effect
+	await get_tree().create_timer(0.5).timeout
+	
+	# Fade out the text
+	var fade_text := create_tween()
+	fade_text.tween_property(panel, "modulate:a", 0.0, 1.5)
+	await fade_text.finished
+	
+	# Fade to black (already black, just ensure overlay is ready)
 	var fade_tween := create_tween()
 	fade_tween.tween_property(fade_overlay, "color:a", 1.0, FADE_DURATION)
 	fade_tween.tween_callback(_change_scene)
