@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=3 uid="uid://cutscene_opening"]
+
+[ext_resource type="Script" path="res://scripts/opening_cutscene.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.05, 0.08, 0.05, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.35, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_continue"]
+font_size = 14
+font_color = Color(0.4, 0.6, 0.4, 1)
+
+[node name="OpeningCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.1, 0.08, 1)
+
+[node name="HospitalAmbience" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SwayingLight" type="PointLight2D" parent="Background/HospitalAmbience"]
+position = Vector2(640, 120)
+color = Color(0.7, 0.85, 0.7, 1)
+energy = 0.8
+texture_scale = 3.0
+
+[node name="DialogueUI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DialoguePanel" type="Panel" parent="DialogueUI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -180.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="DialogueLabel" type="RichTextLabel" parent="DialogueUI/DialoguePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = ""
+fit_content = false
+scroll_active = false
+visible_ratio = 0.0
+
+[node name="ContinueIndicator" type="Label" parent="DialogueUI/DialoguePanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -25.0
+offset_right = -10.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_continue")
+text = "Press [SPACE]..."
+horizontal_alignment = 2
+visible = false
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MumbleAudio" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
