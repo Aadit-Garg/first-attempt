@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="2_font"]
 [ext_resource type="AudioStream" uid="uid://ooa6ofnxe6sc" path="res://asset/Sounds/hallway-chatter-44296.mp3" id="3_audio"]
 [ext_resource type="Texture2D" uid="uid://c2uo1730mujn0" path="res://asset/Gemini_Generated_Image_k1nwadk1nwadk1nw.png" id="4_6gg23"]
-[ext_resource type="AudioStream" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="5_typing"]
+[ext_resource type="AudioStream" uid="uid://4gqpje6j7oed" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="5_typing"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.05, 0.08, 0.05, 0.92)

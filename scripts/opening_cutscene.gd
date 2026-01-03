@@ -44,7 +44,7 @@ var dialogue_lines: Array[String] = [
 	
 	"[color=#555555]...... aggressive ......[/color] [color=#ff0000][shake rate=20 level=10]DISEASE[/shake][/color] [color=#555555]...... brain ......[/color]",
 	
-	"[color=#555555]...... prognosis ......[/color] [color=#ff0000][shake rate=20 level=10]SIX MONTHS[/shake][/color] [color=#555555]...... at most ......[/color]",
+	"[color=#555555]...... brain tumor ......[/color] [color=#ff0000][shake rate=20 level=10]SIX MONTHS[/shake][/color] [color=#555555]...... at most ......[/color]",
 	
 	"[color=#555555]...... manage ......[/color] [color=#ff0000][shake rate=20 level=10]PAIN[/shake][/color] [color=#555555]...... no ......[/color] [color=#ff0000][shake rate=20 level=10]CURE[/shake][/color]",
 	
