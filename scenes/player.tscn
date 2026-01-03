@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://ceux40ytl86a"]
+[gd_scene load_steps=30 format=3 uid="uid://ceux40ytl86a"]
 
 [ext_resource type="Texture2D" uid="uid://dl7ckqd4t8b6r" path="res://asset/16x16 All Animations-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cie8gn8rqvef7" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cijef2qm4mrut" path="res://asset/Light.png" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -247,8 +248,8 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_d2wvv")
 
 [node name="flash_light" type="PointLight2D" parent="."]
-position = Vector2(-1, -7)
-scale = Vector2(1, 0.15625)
+position = Vector2(64.5, -7)
+scale = Vector2(0.48828125, 0.15625)
 shadow_enabled = true
 shadow_color = Color(0.03511622, 0.02928064, 0.029714849, 0)
 shadow_filter = 1
@@ -256,6 +257,12 @@ shadow_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_qhqgy")
 
 [node name="character_light" type="PointLight2D" parent="."]
-position = Vector2(-1.1920929e-07, -7.499999)
-scale = Vector2(0.28125, 0.32812503)
+position = Vector2(-0.49999928, -7.5)
+scale = Vector2(0.296875, 0.32812503)
 texture = SubResource("GradientTexture2D_dqkch")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(4.7683716e-07, -5)
+scale = Vector2(0.20128475, 0.11986301)
+texture = ExtResource("3_qhqgy")
+offset = Vector2(442.15955, 8.342838)
