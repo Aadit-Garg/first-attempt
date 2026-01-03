@@ -4,27 +4,34 @@ extends CharacterBody2D
 const SPEED = 130.0
 #const JUMP_VELOCITY = -300.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+var array =["running_up","running_down","running_right","running_left","running_ur","running_dl","running_ul","running_dr"]
+var dx=[0,0,1,-1,1,-1,-1,1]
+var dy=[-1,1,0,0,-1,1,-1,1]
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	var direction := Input.get_axis("ui_left", "ui_right")
-	#character animation to be shown
+	var direction := Input.get_vector("move_left", "move_right","move_up","move_down")
+	#direction character will be facing 
+	#tried optimizing it but i dont feel it is the best (will work more on this later)
 	if direction:
-		animated_sprite.play("running")
+		for i in range(8):
+			if direction.x==dx[i] and direction.y==dy[i]:
+				if array[i]=="running_left" or array[i]=="running_dl":
+					animated_sprite.flip_h=true
+				else:
+					animated_sprite.flip_h=false
+				animated_sprite.play(array[i])
+				break;
 	else:
 		animated_sprite.play("idle")
-	#direction character will be facing
-	if direction==1:
-		animated_sprite.flip_h=false
-	elif direction==-1:
-		animated_sprite.flip_h=true
-	# velocity on x axis
-	if direction:
-		velocity.x = direction * SPEED
+
+	if direction.x and direction.y:
+		velocity.x = direction.x * SPEED *delta
+		velocity.y = direction.y * SPEED*delta
+	elif direction.x:
+		velocity.x = direction.x * SPEED*delta
+	elif direction.y:
+		velocity.y= direction.y*SPEED*delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
