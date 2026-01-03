@@ -217,7 +217,7 @@ script = ExtResource("1_g2els")
 texture_filter = 1
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"running_dl"
+animation = &"running_ul"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

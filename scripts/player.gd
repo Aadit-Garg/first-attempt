@@ -23,15 +23,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play("idle")
 
-	if direction.x and direction.y:
-		velocity.x = direction.x * SPEED *delta
-		velocity.y = direction.y * SPEED*delta
-	elif direction.x:
-		velocity.x = direction.x * SPEED*delta
-	elif direction.y:
-		velocity.y= direction.y*SPEED*delta
+	if direction == Vector2.ZERO:
+		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
+		animated_sprite.play("idle")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
+		velocity = direction * SPEED
 	move_and_slide()
