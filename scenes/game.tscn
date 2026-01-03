@@ -42,3 +42,6 @@ region_rect = Rect2(180, 144.68527, 23.894684, 31.28415)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/interactive_items"]
 position = Vector2(184.75, 62.125)
 shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0020043976, 0.0018147139, 0.0015807527, 1)

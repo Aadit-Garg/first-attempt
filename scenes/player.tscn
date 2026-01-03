@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ceux40ytl86a"]
+[gd_scene load_steps=29 format=3 uid="uid://ceux40ytl86a"]
 
 [ext_resource type="Texture2D" uid="uid://dl7ckqd4t8b6r" path="res://asset/16x16 All Animations-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cie8gn8rqvef7" path="res://scripts/player.gd" id="1_g2els"]
@@ -209,6 +209,28 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2wvv"]
 radius = 5.0990195
 
+[sub_resource type="Gradient" id="Gradient_g2els"]
+offsets = PackedFloat32Array(0.06, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.34782606, 0.34782606, 0.34782606, 1, 0, 0, 0, 1)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.8, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+fill = 1
+fill_from = Vector2(0.5, 0.49532712)
+fill_to = Vector2(0.07943925, 0.07943925)
+
 [node name="player" type="CharacterBody2D"]
 collision_priority = 5.0
 script = ExtResource("1_g2els")
@@ -217,9 +239,23 @@ script = ExtResource("1_g2els")
 texture_filter = 1
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"running_ul"
+animation = &"running_dl"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_d2wvv")
+
+[node name="flash_light" type="PointLight2D" parent="."]
+position = Vector2(-1, -7)
+scale = Vector2(1, 0.15625)
+shadow_enabled = true
+shadow_color = Color(0.03511622, 0.02928064, 0.029714849, 0)
+shadow_filter = 1
+shadow_item_cull_mask = 5
+texture = SubResource("GradientTexture2D_qhqgy")
+
+[node name="character_light" type="PointLight2D" parent="."]
+position = Vector2(-1.1920929e-07, -7.499999)
+scale = Vector2(0.28125, 0.32812503)
+texture = SubResource("GradientTexture2D_dqkch")
