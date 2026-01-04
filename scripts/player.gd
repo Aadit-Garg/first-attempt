@@ -3,7 +3,12 @@ extends CharacterBody2D
 const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
-@onready var game_manager: Node = %GameManager	
+@onready var game_manager: Node = %GameManager
+
+
+func _ready() -> void:
+	if GlobalScript.checkpoint_pos!=Vector2(-999,-999):
+		global_position=GlobalScript.checkpoint_pos
 
 func _physics_process(delta: float) -> void:
 	#enter movement

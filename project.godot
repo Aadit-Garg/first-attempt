@@ -15,6 +15,10 @@ run/main_scene="uid://d01n55axijkqm"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalScript="*res://scripts/global_script.gd"
+
 [editor]
 
 movie_writer/video_quality=0.5
