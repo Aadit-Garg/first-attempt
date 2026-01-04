@@ -22,7 +22,7 @@ offset_left = 91.0
 offset_top = 55.0
 offset_right = 91.0
 offset_bottom = 55.0
-script = null
+metadata/_edit_group_ = true
 
 [node name="player" parent="." instance=ExtResource("2_lnu2h")]
 z_index = 5

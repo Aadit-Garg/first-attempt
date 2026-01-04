@@ -324,7 +324,7 @@ func _run_phase_transition() -> void:
 	
 	# Load game
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file(NEXT_SCENE)
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 # =============================================================================
 # INPUT HANDLING

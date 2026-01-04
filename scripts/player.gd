@@ -3,18 +3,18 @@ extends CharacterBody2D
 const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
-@onready var game_manager: Node = %GameManager
+@onready var game_manager: Node = %GameManager	
 
 func _physics_process(delta: float) -> void:
 	#enter movement
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	#invert controls
 	if game_manager.infection_level>=80:
 		direction=-direction
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
 	#light will look here
 	point_light.look_at(mouse_pos)
-	point_light.rotation_degrees += 360
 	var look_vec = mouse_pos - global_position
 	var angle = look_vec.angle()
 	var snapped_angle = snapped(angle, PI / 4)
