@@ -1,386 +1,354 @@
 extends Control
-## Opening Cutscene Script - Flatline Protocol
+## Opening Cutscene: THE PROMISE - Flatline Protocol
 ## 
-## This script handles the opening cutscene's "Selective Hearing" dialogue system.
-## The child hears muffled speech with traumatic keywords piercing through.
-##
-## Features:
-## - Typewriter text effect using Tween
-## - Mumble audio that plays during text reveal
-## - Camera zoom for claustrophobic effect
-## - Input handling (Space to skip/advance)
-## - Fade to black and scene transition
+## A multi-phase cinematic cutscene featuring:
+## - Phase 1: Black screen with narrative text
+## - Phase 2: Safehouse scene fade-in
+## - Phase 3: Portrait-based dialogue (Dad/Daughter)
+## - Phase 4: Objective overlay and gameplay transition
 
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
 
-## Characters revealed per second during typewriter effect
-const TYPE_SPEED: float = 30.0
-
-## Camera zoom configuration
-const ZOOM_START := Vector2(1.0, 1.0)
-const ZOOM_END := Vector2(1.2, 1.2)
-const ZOOM_DURATION := 25.0  # Total scene duration in seconds
-
-## Fade transition settings
-const FADE_DURATION := 2.0  # Duration of fade to black
-
-## Next scene to load after cutscene completes
+const TYPE_SPEED: float = 35.0
+const FADE_DURATION := 1.5
 const NEXT_SCENE := "res://scenes/game.tscn"
 
-## Input action for advancing dialogue (fallback to ui_accept if not defined)
-const ADVANCE_ACTION := "ui_accept"
-
 # =============================================================================
-# DIALOGUE DATA
+# PORTRAIT TEXTURES
 # =============================================================================
 
-## Dialogue lines using "Selective Hearing" BBCode formatting
-## The child only hears fragments - traumatic words pierce through the fog
-## "..." represents muffled, incomprehensible speech
-var dialogue_lines: Array[String] = [
-	"[color=#555555]...... results ......[/color] [color=#ff0000][shake rate=20 level=10]SERIOUS[/shake][/color] [color=#555555]......[/color]",
-	
-	"[color=#555555]...... aggressive ......[/color] [color=#ff0000][shake rate=20 level=10]DISEASE[/shake][/color] [color=#555555]...... brain ......[/color]",
-	
-	"[color=#555555]...... brain tumor ......[/color] [color=#ff0000][shake rate=20 level=10]SIX MONTHS[/shake][/color] [color=#555555]...... at most ......[/color]",
-	
-	"[color=#555555]...... manage ......[/color] [color=#ff0000][shake rate=20 level=10]PAIN[/shake][/color] [color=#555555]...... no ......[/color] [color=#ff0000][shake rate=20 level=10]CURE[/shake][/color]",
-	
-	"[color=#555555]...... sorry ...... your child ......[/color] [color=#ff0000][shake rate=20 level=10]WON'T SURVIVE[/shake][/color]"
+@export var father_portrait: Texture2D
+@export var daughter_portrait: Texture2D
+
+# =============================================================================
+# PHASE 1: INTRO TEXT
+# =============================================================================
+
+var intro_texts: Array[String] = [
+	"They said the Spores take your mind first...",
+	"Then your body."
+]
+
+# =============================================================================
+# PHASE 3: DIALOGUE DATA
+# =============================================================================
+
+# Each entry: { "speaker": "Name", "portrait": "dad"/"daughter", "text": "..." }
+var dialogue_sequence: Array[Dictionary] = [
+	{"speaker": "Dad", "portrait": "dad", "text": "I can't... I can't move anymore. It hurts."},
+	{"speaker": "Daughter", "portrait": "daughter", "text": "Get up, Daddy. We're almost there."},
+	{"speaker": "Dad", "portrait": "dad", "text": "The soldiers... they're everywhere."},
+	{"speaker": "Daughter", "portrait": "daughter", "text": "I know. But you promised. You promised to get me to the Tower."},
+	{"speaker": "Dad", "portrait": "dad", "text": "To the safe zone..."},
+	{"speaker": "Daughter", "portrait": "daughter", "text": "Yes. The highest point. Where the air is clean. Please, Daddy. Pick me up."}
 ]
 
 # =============================================================================
 # NODE REFERENCES
 # =============================================================================
 
-@onready var camera: Camera2D = $Camera2D
-@onready var dialogue_label: RichTextLabel = $DialogueUI/DialoguePanel/DialogueLabel
-@onready var continue_indicator: Label = $DialogueUI/DialoguePanel/ContinueIndicator
+@onready var black_background: ColorRect = $BlackBackground
+@onready var scene_image: TextureRect = $SceneImage
+@onready var narrative_text: Label = $DialogueUI/NarrativeText
+@onready var portrait_container: Control = $DialogueUI/PortraitContainer
+@onready var portrait: TextureRect = $DialogueUI/PortraitContainer/Portrait
+@onready var speaker_name: Label = $DialogueUI/PortraitContainer/SpeakerName
+@onready var dialogue_text: RichTextLabel = $DialogueUI/PortraitContainer/DialogueText
+@onready var continue_indicator: Label = $DialogueUI/PortraitContainer/ContinueIndicator
+@onready var objective_overlay: Control = $DialogueUI/ObjectiveOverlay
+@onready var objective_text: Label = $DialogueUI/ObjectiveOverlay/ObjectiveText
 @onready var fade_overlay: ColorRect = $FadeOverlay
-@onready var mumble_audio: AudioStreamPlayer = $MumbleAudio
+@onready var ambience_audio: AudioStreamPlayer = $AmbienceAudio
+@onready var heartbeat_audio: AudioStreamPlayer = $HeartbeatAudio
+@onready var music_audio: AudioStreamPlayer = $MusicAudio
+@onready var tinnitus_audio: AudioStreamPlayer = $TinnitusAudio
 @onready var typing_audio: AudioStreamPlayer = $TypingAudio
-@onready var swaying_light: PointLight2D = $Background/HospitalAmbience/SwayingLight
 
 # =============================================================================
-# STATE VARIABLES
+# STATE
 # =============================================================================
 
-## Current line index in dialogue_lines array
-var current_line_index: int = 0
-
-## Whether text is currently being typed (typewriter in progress)
+enum Phase { INTRO, SCENE_FADE, DIALOGUE, OBJECTIVE, TRANSITION }
+var current_phase: Phase = Phase.INTRO
+var current_index: int = 0
 var is_typing: bool = false
-
-## Whether the scene is transitioning out (prevents input)
+var is_waiting_for_input: bool = false
 var is_transitioning: bool = false
-
-## Reference to the active typewriter tween (for cancellation)
 var typewriter_tween: Tween = null
 
-## Reference to the camera zoom tween
-var camera_tween: Tween = null
-
 # =============================================================================
-# LIFECYCLE METHODS
+# LIFECYCLE
 # =============================================================================
 
 func _ready() -> void:
-	"""Initialize the cutscene when the scene loads."""
-	# Ensure the fade overlay starts transparent
-	fade_overlay.color = Color(0, 0, 0, 0)
+	# Load portrait textures
+	father_portrait = load("res://asset/father.png")
+	daughter_portrait = load("res://asset/daughter.png")
 	
-	# Hide continue indicator initially
-	continue_indicator.visible = false
+	# Initialize visibility
+	narrative_text.text = ""
+	narrative_text.modulate.a = 0.0
+	scene_image.modulate.a = 0.0
+	portrait_container.visible = false
+	objective_overlay.visible = false
+	fade_overlay.color.a = 0.0
+	fade_overlay.visible = true
 	
-	# Clear any existing text
-	dialogue_label.text = ""
-	dialogue_label.visible_ratio = 0.0
+	# Connect audio finished signals for looping
+	ambience_audio.finished.connect(_on_ambience_finished)
+	heartbeat_audio.finished.connect(_on_heartbeat_finished)
+	music_audio.finished.connect(_on_music_finished)
 	
-	# Start the camera zoom animation
+	# Start ambience audio (rain + heartbeat for intro atmosphere)
+	if ambience_audio.stream:
+		ambience_audio.play()
+	if heartbeat_audio.stream:
+		heartbeat_audio.play()
 	
-	# Start the light swaying animation
-	_start_light_sway()
-	
-	# Start the ambient mumble audio (plays continuously)
-	_start_mumble_audio()
-	
-	# Brief delay before starting dialogue (let the scene settle)
+	# Begin cutscene
 	await get_tree().create_timer(1.0).timeout
-	
-	# Begin the dialogue sequence
-	_show_dialogue_line()
+	_run_phase_intro()
+
+
+# Audio looping callbacks
+func _on_ambience_finished() -> void:
+	if not is_transitioning:
+		ambience_audio.play()
+
+func _on_heartbeat_finished() -> void:
+	if not is_transitioning:
+		heartbeat_audio.play()
+
+func _on_music_finished() -> void:
+	if not is_transitioning:
+		music_audio.play()
 
 
 func _input(event: InputEvent) -> void:
-	"""Handle player input for dialogue advancement."""
-	# Ignore input during scene transition
-	if is_transitioning:
-		return
-	
-	# Check for Space key or ui_accept action
-	var is_advance_pressed := false
-	
-	if event is InputEventKey:
-		if event.keycode == KEY_SPACE and event.pressed and not event.echo:
-			is_advance_pressed = true
-	
-	# Also accept ui_accept action (usually Enter/Space)
-	if event.is_action_pressed(ADVANCE_ACTION):
-		is_advance_pressed = true
-	
-	if is_advance_pressed:
-		_handle_advance_input()
+	if event.is_action_pressed("ui_accept") or (event is InputEventKey and event.keycode == KEY_SPACE and event.pressed and not event.echo):
+		_handle_input()
 
 # =============================================================================
-# DIALOGUE SYSTEM
+# PHASE 1: INTRO (Black Screen + Text)
 # =============================================================================
+
+func _run_phase_intro() -> void:
+	current_phase = Phase.INTRO
+	current_index = 0
+	await _show_intro_text()
+
+
+func _show_intro_text() -> void:
+	if current_index >= intro_texts.size():
+		# Move to Phase 2
+		await get_tree().create_timer(1.0).timeout
+		_run_phase_scene_fade()
+		return
+	
+	var text = intro_texts[current_index]
+	narrative_text.text = text
+	
+	# Fade in
+	var fade_in = create_tween()
+	fade_in.tween_property(narrative_text, "modulate:a", 1.0, 1.0)
+	await fade_in.finished
+	
+	# Hold
+	is_waiting_for_input = true
+
+
+func _advance_intro() -> void:
+	is_waiting_for_input = false
+	
+	# Fade out current text
+	var fade_out = create_tween()
+	fade_out.tween_property(narrative_text, "modulate:a", 0.0, 0.8)
+	await fade_out.finished
+	
+	current_index += 1
+	await _show_intro_text()
+
+# =============================================================================
+# PHASE 2: SCENE FADE IN
+# =============================================================================
+
+func _run_phase_scene_fade() -> void:
+	current_phase = Phase.SCENE_FADE
+	narrative_text.visible = false
+	
+	# Start the sad acoustic guitar music
+	if music_audio.stream:
+		music_audio.play()
+	
+	# Fade in the safehouse scene (low contrast - only fade to 0.6)
+	var fade_in = create_tween()
+	fade_in.tween_property(scene_image, "modulate:a", 0.6, 2.0)
+	await fade_in.finished
+	
+	# Brief pause before dialogue
+	await get_tree().create_timer(1.5).timeout
+	
+	# Start dialogue phase
+	_run_phase_dialogue()
+
+# =============================================================================
+# PHASE 3: DIALOGUE (Portrait System)
+# =============================================================================
+
+func _run_phase_dialogue() -> void:
+	current_phase = Phase.DIALOGUE
+	current_index = 0
+	portrait_container.visible = true
+	await _show_dialogue_line()
+
 
 func _show_dialogue_line() -> void:
-	"""Display the current dialogue line with typewriter effect."""
-	if current_line_index >= dialogue_lines.size():
-		# All dialogue complete, trigger ending
-		_start_fade_out()
+	if current_index >= dialogue_sequence.size():
+		# Move to Phase 4
+		portrait_container.visible = false
+		await get_tree().create_timer(0.5).timeout
+		_run_phase_objective()
 		return
 	
-	# Get the current line
-	var line := dialogue_lines[current_line_index]
+	var entry = dialogue_sequence[current_index]
 	
-	# Set the full text (BBCode) but hide it initially
-	dialogue_label.text = line
-	dialogue_label.visible_ratio = 0.0
+	# Set portrait
+	if entry.portrait == "dad":
+		portrait.texture = father_portrait
+	else:
+		portrait.texture = daughter_portrait
 	
-	# Hide continue indicator while typing
+	# Set speaker name
+	speaker_name.text = entry.speaker
+	
+	# Set dialogue text
+	dialogue_text.text = entry.text
+	dialogue_text.visible_ratio = 0.0
+	
+	# Hide continue indicator
 	continue_indicator.visible = false
 	
-	# Start typing state
+	# Typewriter effect
 	is_typing = true
+	var char_count = entry.text.length()
+	var duration = char_count / TYPE_SPEED
 	
 	# Start typing sound
 	if typing_audio.stream and not typing_audio.playing:
 		typing_audio.play()
 	
-	# Calculate duration based on visible characters (not BBCode tags)
-	var visible_char_count := _count_visible_characters(line)
-	var type_duration := visible_char_count / TYPE_SPEED
-	
-	# Create typewriter tween
 	if typewriter_tween and typewriter_tween.is_valid():
 		typewriter_tween.kill()
 	
 	typewriter_tween = create_tween()
-	typewriter_tween.tween_property(dialogue_label, "visible_ratio", 1.0, type_duration)
-	typewriter_tween.tween_callback(_on_typing_complete)
+	typewriter_tween.tween_property(dialogue_text, "visible_ratio", 1.0, duration)
+	typewriter_tween.tween_callback(_on_dialogue_typing_complete)
 
 
-func _on_typing_complete() -> void:
-	"""Called when the typewriter effect finishes."""
+func _on_dialogue_typing_complete() -> void:
 	is_typing = false
 	
 	# Stop typing sound
 	if typing_audio.playing:
 		typing_audio.stop()
 	
-	# Show continue indicator
 	continue_indicator.visible = true
-	
-	# Animate the continue indicator (pulsing effect)
-	_pulse_continue_indicator()
-
-
-func _handle_advance_input() -> void:
-	"""Handle Space/Enter input for dialogue advancement."""
-	if is_typing:
-		# Skip the typewriter effect - show all text immediately
-		_skip_typing()
-	else:
-		# Advance to the next dialogue line
-		_advance_dialogue()
-
-
-func _skip_typing() -> void:
-	"""Skip the typewriter effect and show all text immediately."""
-	# Kill the typewriter tween
-	if typewriter_tween and typewriter_tween.is_valid():
-		typewriter_tween.kill()
-	
-	# Show all text
-	dialogue_label.visible_ratio = 1.0
-	
-	# Complete typing state
-	_on_typing_complete()
+	is_waiting_for_input = true
+	_pulse_indicator()
 
 
 func _advance_dialogue() -> void:
-	"""Move to the next dialogue line."""
-	current_line_index += 1
-	
-	if current_line_index >= dialogue_lines.size():
-		# All lines complete, start fade out
-		_start_fade_out()
-	else:
-		# Show the next line
-		_show_dialogue_line()
-
-# =============================================================================
-# AUDIO SYSTEM
-# =============================================================================
-
-func _start_mumble_audio() -> void:
-	"""Start playing the mumble audio continuously."""
-	if mumble_audio.stream and not mumble_audio.playing:
-		mumble_audio.play()
-
-
-func _stop_mumble_audio() -> void:
-	"""Fade out and stop the mumble audio."""
-	if mumble_audio.playing:
-		# Fade out the audio smoothly
-		var audio_tween := create_tween()
-		audio_tween.tween_property(mumble_audio, "volume_db", -40.0, 1.0)
-		audio_tween.tween_callback(mumble_audio.stop)
-
-# =============================================================================
-# CAMERA & VISUAL EFFECTS
-# =============================================================================
-
-func _start_camera_zoom() -> void:
-	"""Start the slow zoom-in effect on the camera."""
-	camera.zoom = ZOOM_START
-	
-	camera_tween = create_tween()
-	camera_tween.set_ease(Tween.EASE_IN_OUT)
-	camera_tween.set_trans(Tween.TRANS_SINE)
-	camera_tween.tween_property(camera, "zoom", ZOOM_END, ZOOM_DURATION)
-
-
-func _start_light_sway() -> void:
-	"""Create a subtle swaying animation for the overhead light."""
-	if not swaying_light:
-		return
-	
-	var original_pos := swaying_light.position
-	var sway_tween := create_tween()
-	sway_tween.set_loops()  # Infinite loop
-	sway_tween.set_ease(Tween.EASE_IN_OUT)
-	sway_tween.set_trans(Tween.TRANS_SINE)
-	
-	# Sway left and right
-	sway_tween.tween_property(swaying_light, "position:x", original_pos.x - 20, 2.0)
-	sway_tween.tween_property(swaying_light, "position:x", original_pos.x + 20, 4.0)
-	sway_tween.tween_property(swaying_light, "position:x", original_pos.x, 2.0)
-
-
-func _pulse_continue_indicator() -> void:
-	"""Create a pulsing animation on the continue indicator."""
-	var pulse_tween := create_tween()
-	pulse_tween.set_loops()
-	pulse_tween.set_ease(Tween.EASE_IN_OUT)
-	pulse_tween.set_trans(Tween.TRANS_SINE)
-	
-	# Pulse the alpha
-	pulse_tween.tween_property(continue_indicator, "modulate:a", 0.4, 0.6)
-	pulse_tween.tween_property(continue_indicator, "modulate:a", 1.0, 0.6)
-
-# =============================================================================
-# SCENE TRANSITION
-# =============================================================================
-
-func _start_fade_out() -> void:
-	"""Begin the dramatic ending with text animation and fade to black."""
-	is_transitioning = true
-	
-	# Hide continue indicator
+	is_waiting_for_input = false
 	continue_indicator.visible = false
+	current_index += 1
+	await _show_dialogue_line()
+
+
+func _skip_dialogue_typing() -> void:
+	if typewriter_tween and typewriter_tween.is_valid():
+		typewriter_tween.kill()
+	dialogue_text.visible_ratio = 1.0
 	
-	# Stop any ongoing audio
-	_stop_mumble_audio()
+	# Stop typing sound
 	if typing_audio.playing:
 		typing_audio.stop()
 	
-	# Hide the green panel background but keep panel in place (at bottom)
-	var panel = $DialogueUI/DialoguePanel
-	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	_on_dialogue_typing_complete()
+
+# =============================================================================
+# PHASE 4: OBJECTIVE OVERLAY
+# =============================================================================
+
+func _run_phase_objective() -> void:
+	current_phase = Phase.OBJECTIVE
+	objective_overlay.visible = true
 	
-	# Show only the impact word, centered within the label
-	dialogue_label.text = "[center][color=#ff0000][shake rate=15 level=8]WON'T SURVIVE[/shake][/color][/center]"
-	dialogue_label.visible_ratio = 1.0
+	# Play tinnitus sound (high-pitched ringing)
+	if tinnitus_audio.stream:
+		tinnitus_audio.play()
 	
-	# Set pivot for scaling from center of panel
-	panel.pivot_offset = panel.size / 2
-	
-	# Calculate target center position
-	var viewport_size = get_viewport().get_visible_rect().size
-	var target_y = (viewport_size.y / 2) - (panel.size.y / 2)
-	var current_y = panel.global_position.y
-	
-	# Get reference to background/image for fading
-	var background = $Background
-	var texture_rect = $TextureRect if has_node("TextureRect") else null
-	
-	# Animate: move text from bottom to center, zoom in, fade background to BLACK
-	var anim_tween := create_tween()
-	anim_tween.set_parallel(true)
-	anim_tween.set_ease(Tween.EASE_OUT)
-	anim_tween.set_trans(Tween.TRANS_SINE)
-	
-	# Move panel from bottom to center (3 seconds)
-	anim_tween.tween_property(panel, "global_position:y", target_y, 3.0)
-	
-	# Scale up text slowly (3 seconds)
-	anim_tween.tween_property(panel, "scale", Vector2(2.0, 2.0), 3.0)
-	
-	# Fade background to BLACK (change color, not just alpha)
-	anim_tween.tween_property(background, "color", Color(0, 0, 0, 1), 3.0)
-	if texture_rect:
-		anim_tween.tween_property(texture_rect, "modulate:a", 0.0, 3.0)
-	
-	await anim_tween.finished
+	# Fade in objective text
+	var fade_in = create_tween()
+	fade_in.tween_property(objective_text, "modulate:a", 1.0, 0.5)
+	await fade_in.finished
 	
 	# Hold for dramatic effect
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(3.0).timeout
 	
-	# Fade out the text
-	var fade_text := create_tween()
-	fade_text.tween_property(panel, "modulate:a", 0.0, 1.5)
-	await fade_text.finished
-	
-	# Fade to black (already black, just ensure overlay is ready)
-	var fade_tween := create_tween()
-	fade_tween.tween_property(fade_overlay, "color:a", 1.0, FADE_DURATION)
-	fade_tween.tween_callback(_change_scene)
-
-
-func _change_scene() -> void:
-	"""Load the next scene after fade completes."""
-	# Small delay for dramatic effect
-	await get_tree().create_timer(0.5).timeout
-	
-	# Change to the main game scene
-	var error := get_tree().change_scene_to_file(NEXT_SCENE)
-	if error != OK:
-		push_error("Failed to load scene: " + NEXT_SCENE)
+	# Transition to gameplay
+	_run_phase_transition()
 
 # =============================================================================
-# UTILITY FUNCTIONS
+# PHASE 5: TRANSITION TO GAMEPLAY
 # =============================================================================
 
-func _count_visible_characters(bbcode_text: String) -> int:
-	"""
-	Count the number of visible characters in a BBCode string.
-	Excludes BBCode tags from the count for accurate typing duration.
-	"""
-	# Simple regex-free approach: remove content within [ ]
-	var result := ""
-	var in_tag := false
+func _run_phase_transition() -> void:
+	current_phase = Phase.TRANSITION
 	
-	for c in bbcode_text:
-		if c == "[":
-			in_tag = true
-		elif c == "]":
-			in_tag = false
-		elif not in_tag:
-			result += c
+	# Fade out objective
+	var fade_obj = create_tween()
+	fade_obj.tween_property(objective_text, "modulate:a", 0.0, 1.0)
+	await fade_obj.finished
 	
-	return result.length()
+	# Fade to black
+	var fade_black = create_tween()
+	fade_black.tween_property(fade_overlay, "color:a", 1.0, FADE_DURATION)
+	await fade_black.finished
+	
+	# Stop audio
+	ambience_audio.stop()
+	if music_audio.playing:
+		music_audio.stop()
+	
+	# Load game
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file(NEXT_SCENE)
+
+# =============================================================================
+# INPUT HANDLING
+# =============================================================================
+
+func _handle_input() -> void:
+	match current_phase:
+		Phase.INTRO:
+			if is_waiting_for_input:
+				_advance_intro()
+		Phase.DIALOGUE:
+			if is_typing:
+				_skip_dialogue_typing()
+			elif is_waiting_for_input:
+				_advance_dialogue()
+		_:
+			pass  # No input during other phases
+
+# =============================================================================
+# UTILITIES
+# =============================================================================
+
+func _pulse_indicator() -> void:
+	var pulse = create_tween()
+	pulse.set_loops()
+	pulse.tween_property(continue_indicator, "modulate:a", 0.4, 0.5)
+	pulse.tween_property(continue_indicator, "modulate:a", 1.0, 0.5)

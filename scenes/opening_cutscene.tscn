@@ -1,22 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://d01n55axijkqm"]
+[gd_scene load_steps=11 format=3 uid="uid://d01n55axijkqm"]
 
 [ext_resource type="Script" uid="uid://276ulntmbf1" path="res://scripts/opening_cutscene.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="2_font"]
-[ext_resource type="AudioStream" uid="uid://ooa6ofnxe6sc" path="res://asset/Sounds/hallway-chatter-44296.mp3" id="3_audio"]
-[ext_resource type="Texture2D" uid="uid://c2uo1730mujn0" path="res://asset/Gemini_Generated_Image_k1nwadk1nwadk1nw.png" id="4_6gg23"]
-[ext_resource type="AudioStream" uid="uid://4gqpje6j7oed" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="5_typing"]
+[ext_resource type="Texture2D" uid="uid://8x7y7yatn6hc" path="res://asset/scene.jpg" id="3_scene"]
+[ext_resource type="AudioStream" uid="uid://driyipq0bsx3j" path="res://asset/Sounds/gentle-rain-05-437316.mp3" id="4_rain"]
+[ext_resource type="AudioStream" uid="uid://borays4up15kv" path="res://asset/Sounds/thudding-heartbeat-372487.mp3" id="5_heartbeat"]
+[ext_resource type="AudioStream" uid="uid://behk5jr6syqm6" path="res://asset/Sounds/music-guitar.mp3" id="6_music"]
+[ext_resource type="AudioStream" uid="uid://bh0pftcoaykrr" path="res://asset/Sounds/ear-ring-86700.mp3" id="7_tinnitus"]
+[ext_resource type="AudioStream" uid="uid://4gqpje6j7oed" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="8_typing"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.05, 0.08, 0.05, 0.92)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.15, 0.25, 0.15, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_continue"]
+[sub_resource type="LabelSettings" id="LabelSettings_main"]
 font = ExtResource("2_font")
-font_color = Color(0.5, 0.7, 0.5, 1)
+font_size = 28
+font_color = Color(0.85, 0.85, 0.85, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.75)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.3, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="OpeningCutscene" type="Control"]
 layout_mode = 3
@@ -27,83 +41,170 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
-[node name="Background" type="ColorRect" parent="."]
+[node name="BlackBackground" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.04, 0.08, 0.06, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="HospitalAmbience" type="Control" parent="Background"]
+[node name="SceneImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.7162962, 0.7162962, 0.7162962, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="SwayingLight" type="PointLight2D" parent="Background/HospitalAmbience"]
-position = Vector2(640, 100)
-color = Color(0.6, 0.8, 0.6, 1)
-energy = 0.7
-texture_scale = 4.0
+texture = ExtResource("3_scene")
+expand_mode = 1
 
 [node name="DialogueUI" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="DialoguePanel" type="Panel" parent="DialogueUI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -160.0
-offset_right = -32.0
-offset_bottom = -32.0
+[node name="NarrativeText" type="Label" parent="DialogueUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -50.0
+offset_right = 400.0
+offset_bottom = 50.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_main")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="DialogueLabel" type="RichTextLabel" parent="DialogueUI/DialoguePanel"]
-layout_mode = 1
+[node name="PortraitContainer" type="Control" parent="DialogueUI"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 12.0
-offset_right = -16.0
-offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Portrait" type="TextureRect" parent="DialogueUI/PortraitContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -199.0
+offset_right = -323.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+expand_mode = 1
+
+[node name="SpeakerName" type="Label" parent="DialogueUI/PortraitContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -317.0
+offset_top = -197.0
+offset_right = 183.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+
+[node name="DialogueBackdrop" type="Panel" parent="DialogueUI/PortraitContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -323.0
+offset_top = -200.0
+offset_right = 247.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueUI/PortraitContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -313.0
+offset_top = -141.0
+offset_right = 237.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("2_font")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_active = false
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="ContinueIndicator" type="Label" parent="DialogueUI/DialoguePanel"]
-visible = false
+[node name="ContinueIndicator" type="Label" parent="DialogueUI/PortraitContainer"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -28.0
-offset_right = -12.0
-offset_bottom = -8.0
+offset_left = -516.0
+offset_top = -35.0
+offset_right = -336.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Press [SPACE]..."
-label_settings = SubResource("LabelSettings_continue")
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "[SPACE]"
 horizontal_alignment = 2
+
+[node name="ObjectiveOverlay" type="Control" parent="DialogueUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ObjectiveText" type="Label" parent="DialogueUI/ObjectiveOverlay"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -30.0
+offset_right = 300.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+text = "OBJECTIVE: CARRY HER TO THE TOWER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FadeOverlay" type="ColorRect" parent="."]
 z_index = 100
@@ -116,24 +217,22 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="MumbleAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_audio")
+[node name="AmbienceAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rain")
+volume_db = -10.0
+
+[node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_heartbeat")
 volume_db = -6.0
 
-[node name="TypingAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_typing")
+[node name="MusicAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_music")
+volume_db = -8.0
+
+[node name="TinnitusAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tinnitus")
 volume_db = -3.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.3515629, 0.3515629, 0.35156286, 1)
-self_modulate = Color(0.76546437, 0.977254, 0.8404654, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_6gg23")
-stretch_mode = 5
+[node name="TypingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_typing")
+volume_db = -12.0

@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [editor]
 
+movie_writer/video_quality=0.5
 movie_writer/movie_file="D:/Programming Languages/first attempt/records/record.avi"
 movie_writer/disable_vsync=true
+movie_writer/fps=30
 
 [input]
 
