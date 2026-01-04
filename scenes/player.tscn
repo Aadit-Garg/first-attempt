@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ceux40ytl86a"]
+[gd_scene load_steps=28 format=3 uid="uid://ceux40ytl86a"]
 
 [ext_resource type="Texture2D" uid="uid://dl7ckqd4t8b6r" path="res://asset/16x16 All Animations-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cie8gn8rqvef7" path="res://scripts/player.gd" id="1_g2els"]
@@ -210,20 +210,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2wvv"]
 radius = 5.0990195
 
-[sub_resource type="Gradient" id="Gradient_g2els"]
-offsets = PackedFloat32Array(0.06, 0.7, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.34782606, 0.34782606, 0.34782606, 1, 0, 0, 0, 1)
-metadata/_snap_count = 2
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhqgy"]
-gradient = SubResource("Gradient_g2els")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0, 0.5)
-fill_to = Vector2(0.8, 0.5)
-
 [sub_resource type="Gradient" id="Gradient_qhqgy"]
+offsets = PackedFloat32Array(0.52666664, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
@@ -247,18 +235,9 @@ autoplay = "idle"
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_d2wvv")
 
-[node name="flash_light" type="PointLight2D" parent="."]
-position = Vector2(64.5, -7)
-scale = Vector2(0.48828125, 0.15625)
-shadow_enabled = true
-shadow_color = Color(0.03511622, 0.02928064, 0.029714849, 0)
-shadow_filter = 1
-shadow_item_cull_mask = 5
-texture = SubResource("GradientTexture2D_qhqgy")
-
 [node name="character_light" type="PointLight2D" parent="."]
-position = Vector2(-0.49999928, -7.5)
-scale = Vector2(0.296875, 0.32812503)
+position = Vector2(0.5000003, -7)
+scale = Vector2(0.328125, 0.40625003)
 texture = SubResource("GradientTexture2D_dqkch")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

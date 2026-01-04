@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://credits_intro"]
+[gd_scene load_steps=3 format=3 uid="uid://cfk4vkg7dscr5"]
 
-[ext_resource type="Script" path="res://scripts/credits_intro.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bavfclto4a1to" path="res://scripts/credits_intro.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="2_font"]
 
 [node name="CreditsIntro" type="Control"]

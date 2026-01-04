@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxbjlvjajkq5y"]
+
+[ext_resource type="Script" uid="uid://bg1fk0er1kjgl" path="res://scripts/canvas.gd" id="1_7axt1"]
+[ext_resource type="Shader" uid="uid://dth5lhfl23scp" path="res://scripts/canvas.gdshader" id="2_owpp6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxins"]
+shader = ExtResource("2_owpp6")
+shader_parameter/infection_level = 0.0
+
+[node name="canvas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7axt1")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(578, 340)
+color = Color(0.019607844, 0.019607844, 0.03137255, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_sxins")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
