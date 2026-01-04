@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://yj0dbit0cm6s"]
+[gd_scene load_steps=8 format=3 uid="uid://yj0dbit0cm6s"]
 
+[ext_resource type="Script" uid="uid://gxivk7en5c7v" path="res://scripts/game_manager.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://013whxl85mrn" path="res://scenes/interactive_items.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ceux40ytl86a" path="res://scenes/player.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://b3uiihujmk5ns" path="res://asset/Tileset_Large.png" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://bxbjlvjajkq5y" path="res://scenes/canvas.tscn" id="5_iywne"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -10,6 +12,17 @@
 size = Vector2(24.5, 34.25)
 
 [node name="game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_lbhrr")
+
+[node name="canvas" parent="." instance=ExtResource("5_iywne")]
+offset_left = 91.0
+offset_top = 55.0
+offset_right = 91.0
+offset_bottom = 55.0
+script = null
 
 [node name="player" parent="." instance=ExtResource("2_lnu2h")]
 z_index = 5
@@ -43,5 +56,4 @@ region_rect = Rect2(180, 144.68527, 23.894684, 31.28415)
 position = Vector2(185, 62)
 shape = SubResource("RectangleShape2D_lnu2h")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0020043976, 0.0018147139, 0.0015807527, 1)
+[connection signal="body_entered" from="StaticBody2D2/interactive_items" to="GameManager" method="_on_interactive_items_body_entered"]
