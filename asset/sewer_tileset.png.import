@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8lhn5mugg16j"
-path="res://.godot/imported/daughter.png-c133a739b0e6a1b01c83e860061c63c6.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://cdx0wgvkie4y"
+valid=false
 
 [deps]
 
-source_file="res://asset/daughter.png"
-dest_files=["res://.godot/imported/daughter.png-c133a739b0e6a1b01c83e860061c63c6.ctex"]
+source_file="res://asset/sewer_tileset.png"
 
 [params]
 

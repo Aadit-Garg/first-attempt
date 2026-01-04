@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://276ulntmbf1" path="res://scripts/opening_cutscene.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="2_font"]
-[ext_resource type="Texture2D" uid="uid://8x7y7yatn6hc" path="res://asset/scene.jpg" id="3_scene"]
+[ext_resource type="Texture2D" uid="uid://bb5y0pvlaq3j7" path="res://asset/scene.jpg" id="3_scene"]
 [ext_resource type="AudioStream" uid="uid://driyipq0bsx3j" path="res://asset/Sounds/gentle-rain-05-437316.mp3" id="4_rain"]
 [ext_resource type="AudioStream" uid="uid://borays4up15kv" path="res://asset/Sounds/thudding-heartbeat-372487.mp3" id="5_heartbeat"]
 [ext_resource type="AudioStream" uid="uid://behk5jr6syqm6" path="res://asset/Sounds/music-guitar.mp3" id="6_music"]
@@ -138,6 +138,25 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
 
+[node name="ContinueIndicator" type="Label" parent="DialogueUI/PortraitContainer/DialogueBackdrop"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -25.0
+offset_right = -7.0
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "[SPACE]"
+horizontal_alignment = 2
+
 [node name="DialogueText" type="RichTextLabel" parent="DialogueUI/PortraitContainer"]
 layout_mode = 1
 anchors_preset = 7
@@ -157,25 +176,6 @@ bbcode_enabled = true
 scroll_active = false
 visible_characters = 0
 visible_ratio = 0.0
-
-[node name="ContinueIndicator" type="Label" parent="DialogueUI/PortraitContainer"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -516.0
-offset_top = -35.0
-offset_right = -336.0
-offset_bottom = -7.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 16
-text = "[SPACE]"
-horizontal_alignment = 2
 
 [node name="ObjectiveOverlay" type="Control" parent="DialogueUI"]
 layout_mode = 3
