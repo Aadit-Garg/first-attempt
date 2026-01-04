@@ -11,9 +11,10 @@ func _process(delta: float) -> void:
 	
 	# UPDATE THE SHADER
 	# We send the number straight to the GPU
-	glitch_rect.material.set_shader_parameter("infection_level", infection_level)
-
-
+	if infection_level>=50:
+		glitch_rect.material.set_shader_parameter("infection_level", infection_level)
+	if infection_level==100:
+		print("YOU DIED!!!")
 func _on_interactive_items_body_entered(body: Node2D) -> void:
 	infection_level-=decrease
 	infection_level=clamp(infection_level,0,100)
