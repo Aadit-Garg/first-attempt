@@ -4,6 +4,7 @@ const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var game_manager: Node = %GameManager
+@onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
@@ -16,8 +17,15 @@ func _physics_process(delta: float) -> void:
 	#invert controls
 	if game_manager.infection_level>=80:
 		direction=-direction
+	#invinvible ability
+	if Input.is_action_just_pressed("bloom") && game_manager.infection_level<90:
+		collision_layer=999#we will change it when we add enemies
+		animated_sprite.hide()
+		timer.start()
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
+	
+	
 	#light will look here
 	point_light.look_at(mouse_pos)
 	var look_vec = mouse_pos - global_position
@@ -56,3 +64,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.stop() 
 
 	move_and_slide()
+
+
+func _on_timer_timeout() -> void:
+	collision_layer=1
+	animated_sprite.show()
