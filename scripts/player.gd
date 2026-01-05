@@ -20,9 +20,10 @@ func _physics_process(delta: float) -> void:
 		direction=-direction
 	#invinvible ability
 	if Input.is_action_pressed("bloom") && game_manager.infection_level<90:
-		collision_layer=0
-		collision_mask=1#we will change it when we add enemies
-		animated_sprite.modulate.a=0.5
+		collision_layer=5
+		collision_mask=1
+		collision_mask=2         #we will change it when we add enemies
+		animated_sprite.modulate.a=0.2
 		timer.start()
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
@@ -69,6 +70,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	collision_layer=2
+	collision_layer=3
 	collision_mask = original_collision_mask
 	animated_sprite.modulate.a=1

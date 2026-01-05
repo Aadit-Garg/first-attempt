@@ -1,6 +1,6 @@
 extends Node
 var infection_level=0.0
-var rate=10
+var rate=0
 var decrease=15
 
 @onready var glitch_rect: ColorRect  = $"../canvas/CanvasLayer/ColorRect"
