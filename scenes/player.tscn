@@ -221,6 +221,8 @@ fill_from = Vector2(0.5, 0.49532712)
 fill_to = Vector2(0.07943925, 0.07943925)
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
 collision_priority = 5.0
 script = ExtResource("1_g2els")
 

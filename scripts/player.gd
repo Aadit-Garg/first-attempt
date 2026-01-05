@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var original_collision_mask=collision_mask
 const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
@@ -18,9 +19,10 @@ func _physics_process(delta: float) -> void:
 	if game_manager.infection_level>=80:
 		direction=-direction
 	#invinvible ability
-	if Input.is_action_just_pressed("bloom") && game_manager.infection_level<90:
-		collision_layer=999#we will change it when we add enemies
-		animated_sprite.hide()
+	if Input.is_action_pressed("bloom") && game_manager.infection_level<90:
+		collision_layer=0
+		collision_mask=1#we will change it when we add enemies
+		animated_sprite.modulate.a=0.5
 		timer.start()
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
@@ -67,5 +69,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	collision_layer=1
-	animated_sprite.show()
+	collision_layer=2
+	collision_mask = original_collision_mask
+	animated_sprite.modulate.a=1
