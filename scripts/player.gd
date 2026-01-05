@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var original_collision_layer=collision_layer
 var original_collision_mask=collision_mask
 const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		direction=-direction
 	#invinvible ability
 	if Input.is_action_pressed("bloom") && game_manager.infection_level<90:
-		collision_layer=5
+		collision_layer=16
 		collision_mask=1
 		collision_mask=2         #we will change it when we add enemies
 		animated_sprite.modulate.a=0.2
@@ -70,6 +70,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	collision_layer=3
+	collision_layer=original_collision_layer
 	collision_mask = original_collision_mask
 	animated_sprite.modulate.a=1
