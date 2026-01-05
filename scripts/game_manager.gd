@@ -1,5 +1,5 @@
 extends Node
-var infection_level=0.0
+var infection_level=1
 var rate=0
 var decrease=15
 
