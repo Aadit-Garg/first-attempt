@@ -21,8 +21,7 @@ func _physics_process(delta: float) -> void:
 	#invinvible ability
 	if Input.is_action_pressed("bloom") && game_manager.infection_level<90:
 		collision_layer=16
-		collision_mask=1
-		collision_mask=2         #we will change it when we add enemies
+		collision_mask=1     #we will change it when we add enemies
 		animated_sprite.modulate.a=0.2
 		timer.start()
 	var mouse_pos = get_global_mouse_position()
