@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="first attempt"
-run/main_scene="uid://d01n55axijkqm"
+run/main_scene="uid://7ubx6qr4hexb"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalScript="*res://scripts/global_script.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [editor]
 

@@ -4,7 +4,6 @@ var original_collision_mask=collision_mask
 const SPEED = 130.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
-@onready var game_manager: Node = %GameManager
 @onready var timer: Timer = $Timer
 
 
@@ -16,10 +15,10 @@ func _physics_process(delta: float) -> void:
 	#enter movement
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	#invert controls
-	if game_manager.infection_level>=80:
+	if GameManager.infection_level>=80:
 		direction=-direction
 	#invinvible ability
-	if Input.is_action_pressed("bloom") && game_manager.infection_level<90:
+	if Input.is_action_pressed("bloom") && GameManager.infection_level<90:
 		collision_layer=16
 		collision_mask=1       #we will change it when we add enemies
 		animated_sprite.modulate.a=0.2
@@ -38,11 +37,11 @@ func _physics_process(delta: float) -> void:
 	var x = look_dir.x
 	var y = look_dir.y
 	
-	#horizontal flipping for dl,l,ul
-	if x < 0:
-		animated_sprite.flip_h = true
-	else:
-		animated_sprite.flip_h = false
+	##horizontal flipping for dl,l,ul
+	#if x < 0:
+		#animated_sprite.flip_h = true
+	#else:
+		#animated_sprite.flip_h = false
 
 	#finding which animation to use removed the for loop wasnt worth it
 	var anim_name = "running_down"

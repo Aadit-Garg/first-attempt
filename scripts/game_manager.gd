@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		#Engine.time_scale=0.5
 		
 #how it will work for health items
-func _on_interactive_items_body_entered(body: Node2D) -> void:
+func reduce_infection():
 	infection_level-=decrease
 	infection_level=clamp(infection_level,0,100)
 
