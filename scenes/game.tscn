@@ -46,10 +46,10 @@ position = Vector2(114, 81)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-collision_mask = 3
+collision_mask = 19
 
 [node name="interactive_items" parent="StaticBody2D2" instance=ExtResource("2_lbhrr")]
-collision_mask = 2
+collision_mask = 19
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/interactive_items"]
 texture_filter = 1
