@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=39 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
 [ext_resource type="PackedScene" uid="uid://ceux40ytl86a" path="res://scenes/player.tscn" id="2_0srwa"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dv64c8ey3l8hn" path="res://scenes/enemy_left_right.tscn" id="4_v5uil"]
 [ext_resource type="PackedScene" uid="uid://ddnx4422geobk" path="res://scenes/enemy_up_down.tscn" id="5_5722l"]
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="7_ep78u"]
+[ext_resource type="Script" uid="uid://d25o1eeupgsm5" path="res://scripts/local_infection_level_2.gd" id="8_dfjjl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqqg8"]
 texture = ExtResource("1_mi4ay")
@@ -587,4 +588,10 @@ position = Vector2(234, -17)
 [node name="Item7" parent="items" instance=ExtResource("7_ep78u")]
 position = Vector2(-58, -118)
 
+[node name="local_infection" type="Node2D" parent="."]
+script = ExtResource("8_dfjjl")
+
+[node name="Timer" type="Timer" parent="local_infection"]
+
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
+[connection signal="timeout" from="local_infection/Timer" to="local_infection" method="_on_timer_timeout"]
