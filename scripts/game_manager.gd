@@ -1,7 +1,7 @@
 extends Node
 var infection_level=1
-var rate=10
-var decrease=5
+var rate=0
+var decrease=10
 @onready var glitch_rect: Control = $canvas
 @onready var timer: Timer = $Timer
 @onready var player: CharacterBody2D = $"../player"
