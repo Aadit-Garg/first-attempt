@@ -11,6 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = 10
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +22,7 @@ grow_vertical = 2
 color = Color(0.0253638, 0.0253638, 0.025363795, 1)
 
 [node name="Label" type="Label" parent="."]
+z_index = 11
 texture_filter = 1
 layout_mode = 0
 offset_left = 212.0
