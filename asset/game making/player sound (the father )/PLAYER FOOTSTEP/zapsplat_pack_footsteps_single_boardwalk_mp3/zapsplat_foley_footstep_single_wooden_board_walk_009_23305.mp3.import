@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjbpg1585yim7"
+path="res://.godot/imported/zapsplat_foley_footstep_single_wooden_board_walk_009_23305.mp3-9fdb00245a232543a1b8afe1c59abbdf.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER FOOTSTEP/zapsplat_pack_footsteps_single_boardwalk_mp3/zapsplat_foley_footstep_single_wooden_board_walk_009_23305.mp3"
+dest_files=["res://.godot/imported/zapsplat_foley_footstep_single_wooden_board_walk_009_23305.mp3-9fdb00245a232543a1b8afe1c59abbdf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

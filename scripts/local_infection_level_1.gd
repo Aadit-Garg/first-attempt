@@ -3,7 +3,6 @@ extends Node2D
 var infection_level=1
 @onready var timer: Timer = $Timer
 @onready var glitch_rect: Control = $"../canvas/CanvasLayer/ColorRect"
-@onready var canvas: Control = $"../canvas"
 @onready var death_screen: ColorRect = $"../CanvasLayer/death_screen"
 
 func _process(delta: float) -> void:

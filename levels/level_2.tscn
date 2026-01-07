@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=42 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ddnx4422geobk" path="res://scenes/enemy_up_down.tscn" id="5_5722l"]
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="7_ep78u"]
 [ext_resource type="Script" uid="uid://d25o1eeupgsm5" path="res://scripts/local_infection_level_2.gd" id="8_dfjjl"]
-[ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="10_sd18g"]
+[ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="10_vm7no"]
+[ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="11_vm7no"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqqg8"]
 texture = ExtResource("1_mi4ay")
@@ -418,10 +419,9 @@ position = Vector2(1, -33)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 scale = Vector2(-1.4000022, 4.200039)
-zoom = Vector2(10, 10)
+zoom = Vector2(6, 6)
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
-visible = false
 offset_left = 89.0
 offset_top = -91.0
 offset_right = 89.0
@@ -619,13 +619,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -132.0
-offset_top = -16.0
+offset_top = -28.0
 offset_right = 132.0
-offset_bottom = 16.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.5568628, 0.07058824, 0.039215688, 1)
-theme_override_fonts/font = ExtResource("10_sd18g")
+theme_override_fonts/font = ExtResource("10_vm7no")
 theme_override_font_sizes/font_size = 32
 text = "YOU DIED!!!"
 
@@ -634,19 +634,21 @@ process_mode = 3
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.462
-anchor_top = 0.85200006
-anchor_right = 0.47700003
-anchor_bottom = 0.90700006
-offset_left = -63.224
-offset_top = -0.0960083
-offset_right = 59.49597
-offset_bottom = 0.26397705
+anchor_left = 0.5
+anchor_top = 0.88900006
+anchor_right = 0.5
+anchor_bottom = 0.89000005
+offset_left = -77.0
+offset_top = -70.07202
+offset_right = 78.0
+offset_bottom = 0.27996826
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.5568628, 0.07058824, 0.039215688, 1)
-theme_override_fonts/font = ExtResource("10_sd18g")
+theme_override_fonts/font = ExtResource("10_vm7no")
 text = "Restart"
+
+[node name="HUD" parent="." instance=ExtResource("11_vm7no")]
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

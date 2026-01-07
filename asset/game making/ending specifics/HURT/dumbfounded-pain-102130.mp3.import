@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djomqukj2tlu3"
+path="res://.godot/imported/dumbfounded-pain-102130.mp3-aedb72abe65ffb3a7f5da496f7354483.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/ending specifics/HURT/dumbfounded-pain-102130.mp3"
+dest_files=["res://.godot/imported/dumbfounded-pain-102130.mp3-aedb72abe65ffb3a7f5da496f7354483.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

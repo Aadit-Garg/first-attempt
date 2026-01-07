@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://burm7c2kr3taj"
+path="res://.godot/imported/horror-piano-443326.mp3-2ce6b9ff5d53e425d0f410dc46758442.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/music (the mood)/goat themes/horror-piano-443326.mp3"
+dest_files=["res://.godot/imported/horror-piano-443326.mp3-2ce6b9ff5d53e425d0f410dc46758442.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

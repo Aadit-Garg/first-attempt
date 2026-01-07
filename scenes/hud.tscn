@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://deeb8xv0lhdxh"]
+
+[ext_resource type="Script" uid="uid://djudi6mjpj1sy" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="2_oo0fn"]
+
+[sub_resource type="Gradient" id="Gradient_toqtt"]
+offsets = PackedFloat32Array(0.5036232, 0.7210145)
+colors = PackedColorArray(0.15667456, 0.15667456, 0.15667456, 1, 0.14406255, 0.14406255, 0.14406255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ahhtf"]
+gradient = SubResource("Gradient_toqtt")
+
+[sub_resource type="Gradient" id="Gradient_oo0fn"]
+colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ysmq"]
+gradient = SubResource("Gradient_oo0fn")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ahhtf")
+
+[node name="Infec_bar" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.080000006
+anchor_right = 0.078
+anchor_bottom = 0.080000006
+offset_left = 0.14399719
+offset_top = 0.15999603
+offset_right = 185.144
+offset_bottom = 64.159996
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_ahhtf")
+texture_progress = SubResource("GradientTexture2D_5ysmq")
+
+[node name="Label" type="Label" parent="Infec_bar"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -20.0
+offset_right = 194.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_oo0fn")
+text = "INFECTION LEVEL"

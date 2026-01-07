@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c50lqyvxe7fo8"
+path="res://.godot/imported/water-dripping-364450.mp3-883c8993c21f24b86cc7c0bbbfb58450.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/sewer_drip/water-dripping-364450.mp3"
+dest_files=["res://.godot/imported/water-dripping-364450.mp3-883c8993c21f24b86cc7c0bbbfb58450.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

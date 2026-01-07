@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c45aslgetmsmy"
+path="res://.godot/imported/footstep-on-wood-foley-6398.mp3-420e27c5fddfff74fac6dbeb26d15614.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/material sound/footstep_metal/footstep-on-wood-foley-6398.mp3"
+dest_files=["res://.godot/imported/footstep-on-wood-foley-6398.mp3-420e27c5fddfff74fac6dbeb26d15614.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

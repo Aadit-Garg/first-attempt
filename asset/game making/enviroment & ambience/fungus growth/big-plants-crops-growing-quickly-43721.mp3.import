@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://i0kqjj833b08"
+path="res://.godot/imported/big-plants-crops-growing-quickly-43721.mp3-c0003e3ee1dd590ffe447ad1748ddee9.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/fungus growth/big-plants-crops-growing-quickly-43721.mp3"
+dest_files=["res://.godot/imported/big-plants-crops-growing-quickly-43721.mp3-c0003e3ee1dd590ffe447ad1748ddee9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

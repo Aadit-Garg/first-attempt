@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalScript="*res://scripts/global_script.gd"
 GameManager="*res://scripts/game_manager.gd"
+BgMusic="*res://scenes/bg_music.tscn"
 
 [editor]
 

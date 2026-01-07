@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2eit5xy5nmlw"
+path="res://.godot/imported/moving-plant-75923.mp3-9ac983d9c073887e62b7b5960bc80d6a.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/fungus growth/moving-plant-75923.mp3"
+dest_files=["res://.godot/imported/moving-plant-75923.mp3-9ac983d9c073887e62b7b5960bc80d6a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

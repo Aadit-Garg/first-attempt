@@ -326,6 +326,7 @@ func _run_phase_transition() -> void:
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://levels/tutorial_level.tscn")
 	GameManager.infection_level=0
+	BgMusic.stream_paused=false
 # =============================================================================
 # INPUT HANDLING
 # =============================================================================

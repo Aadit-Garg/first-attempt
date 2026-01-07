@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6k5652cs1pqq"
+path="res://.godot/imported/zapsplat_impacts_knife_heavy_stab_into_body_thud_005_90713.mp3-1bf110cb422c54c7bd7bd357a3c366e8.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER LAND/zapsplat_impacts_knife_heavy_stab_into_body_thud_005_90713.mp3"
+dest_files=["res://.godot/imported/zapsplat_impacts_knife_heavy_stab_into_body_thud_005_90713.mp3-1bf110cb422c54c7bd7bd357a3c366e8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

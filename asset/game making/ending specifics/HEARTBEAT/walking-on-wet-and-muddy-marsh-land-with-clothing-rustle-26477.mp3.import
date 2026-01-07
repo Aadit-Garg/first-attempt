@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btq0b013dueym"
+path="res://.godot/imported/walking-on-wet-and-muddy-marsh-land-with-clothing-rustle-26477.mp3-f2d31f03b24d978123bbcaed5c6c5a77.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/ending specifics/HEARTBEAT/walking-on-wet-and-muddy-marsh-land-with-clothing-rustle-26477.mp3"
+dest_files=["res://.godot/imported/walking-on-wet-and-muddy-marsh-land-with-clothing-rustle-26477.mp3-f2d31f03b24d978123bbcaed5c6c5a77.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b05fos51qwei6"
+path="res://.godot/imported/zapsplat_human_male_laboured_deep_breathing_74259.mp3-b47bd819890e6019d5692584590db125.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER JUMP/zapsplat_human_male_laboured_deep_breathing_74259.mp3"
+dest_files=["res://.godot/imported/zapsplat_human_male_laboured_deep_breathing_74259.mp3-b47bd819890e6019d5692584590db125.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xcnckiaa2lci"
+path="res://.godot/imported/sample_confirm_success03_kofi_by_miraclei-360151.mp3-966cdd423e118588631b1172c7fb8e10.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/UI & system/button confirm sound/sample_confirm_success03_kofi_by_miraclei-360151.mp3"
+dest_files=["res://.godot/imported/sample_confirm_success03_kofi_by_miraclei-360151.mp3-966cdd423e118588631b1172c7fb8e10.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

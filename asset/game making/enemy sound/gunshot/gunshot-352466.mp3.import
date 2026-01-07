@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsfx0lvt7s3dy"
+path="res://.godot/imported/gunshot-352466.mp3-f62b2f31dd8a329669b5020b13a2575b.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enemy sound/gunshot/gunshot-352466.mp3"
+dest_files=["res://.godot/imported/gunshot-352466.mp3-f62b2f31dd8a329669b5020b13a2575b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

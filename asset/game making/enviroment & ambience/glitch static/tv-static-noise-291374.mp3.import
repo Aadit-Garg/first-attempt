@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biiy8h0lvjmgg"
+path="res://.godot/imported/tv-static-noise-291374.mp3-b77785405ebfd1f394fc94f807ad3f1f.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/glitch static/tv-static-noise-291374.mp3"
+dest_files=["res://.godot/imported/tv-static-noise-291374.mp3-b77785405ebfd1f394fc94f807ad3f1f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

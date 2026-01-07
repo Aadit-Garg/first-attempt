@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://oe5463l6l1bb"
+path="res://.godot/imported/zapsplat_foley_footsteps_heavy_slow_next_door_above_upstairs_muffled_99503.mp3-5746b44f35b7d2ad15980d3a368a5dfe.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER FOOTSTEP/another footstep/zapsplat_foley_footsteps_heavy_slow_next_door_above_upstairs_muffled_99503.mp3"
+dest_files=["res://.godot/imported/zapsplat_foley_footsteps_heavy_slow_next_door_above_upstairs_muffled_99503.mp3-5746b44f35b7d2ad15980d3a368a5dfe.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

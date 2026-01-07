@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bojvbikbl4l1f"
+path="res://.godot/imported/error_sound-221445.mp3-6d7244b2d0d55bc5eade210f0773c50b.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/UI & system/error or buzz/error_sound-221445.mp3"
+dest_files=["res://.godot/imported/error_sound-221445.mp3-6d7244b2d0d55bc5eade210f0773c50b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

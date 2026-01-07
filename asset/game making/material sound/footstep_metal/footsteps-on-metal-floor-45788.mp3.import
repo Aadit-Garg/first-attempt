@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fag68er4yhmj"
+path="res://.godot/imported/footsteps-on-metal-floor-45788.mp3-5d8f4746b28c6317b2698a914903392e.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/material sound/footstep_metal/footsteps-on-metal-floor-45788.mp3"
+dest_files=["res://.godot/imported/footsteps-on-metal-floor-45788.mp3-5d8f4746b28c6317b2698a914903392e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

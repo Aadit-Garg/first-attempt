@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cavbu0vf3me18"
+path="res://.godot/imported/goopy-slime-16-229630.mp3-34da1b916bbbe76b31f79ebc933be6d3.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/ending specifics/INFECTION_BLOOM/goopy-slime-16-229630.mp3"
+dest_files=["res://.godot/imported/goopy-slime-16-229630.mp3-34da1b916bbbe76b31f79ebc933be6d3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -8,7 +8,8 @@ var dialogue_lines: Array[String] = [
 	"WHAT",
 	"How Did you reach this place???",
 	"Go do some Work mann!!!!!!!!",
-	"okay okay i guess you are cool now you that found a bug.",
+	"okay okay i guess you are cool now 
+	that you found a bug.",
 	"now go and finish the game man!"
 ]
 

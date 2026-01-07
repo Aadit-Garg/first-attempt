@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tawndegb80oj"
+path="res://.godot/imported/the-sad-piano-5861.mp3-f48481e1fdeb89a52a523774cf72b471.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/music (the mood)/ending piano/the-sad-piano-5861.mp3"
+dest_files=["res://.godot/imported/the-sad-piano-5861.mp3-f48481e1fdeb89a52a523774cf72b471.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

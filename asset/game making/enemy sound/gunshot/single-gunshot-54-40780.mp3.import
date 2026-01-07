@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cy7n7o63fdij6"
+path="res://.godot/imported/single-gunshot-54-40780.mp3-8c080788730ac257e490f490cc25addb.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enemy sound/gunshot/single-gunshot-54-40780.mp3"
+dest_files=["res://.godot/imported/single-gunshot-54-40780.mp3-8c080788730ac257e490f490cc25addb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

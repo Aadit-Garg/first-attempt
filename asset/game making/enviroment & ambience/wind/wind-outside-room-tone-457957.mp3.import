@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://o3yj62vwrymd"
+path="res://.godot/imported/wind-outside-room-tone-457957.mp3-afbc7cc38ecfe1cf086bb494cbc4f6f9.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/wind/wind-outside-room-tone-457957.mp3"
+dest_files=["res://.godot/imported/wind-outside-room-tone-457957.mp3-afbc7cc38ecfe1cf086bb494cbc4f6f9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

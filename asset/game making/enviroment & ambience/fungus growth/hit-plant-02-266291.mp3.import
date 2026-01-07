@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b5t7r0k0basyp"
+path="res://.godot/imported/hit-plant-02-266291.mp3-e72ab548acad03748ac1cfbc03c8abca.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/enviroment & ambience/fungus growth/hit-plant-02-266291.mp3"
+dest_files=["res://.godot/imported/hit-plant-02-266291.mp3-e72ab548acad03748ac1cfbc03c8abca.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

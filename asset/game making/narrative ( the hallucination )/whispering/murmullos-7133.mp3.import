@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl8lohwbu0tg2"
+path="res://.godot/imported/murmullos-7133.mp3-51fe7b9ec18e12f13dbb0829ed099577.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/narrative ( the hallucination )/whispering/murmullos-7133.mp3"
+dest_files=["res://.godot/imported/murmullos-7133.mp3-51fe7b9ec18e12f13dbb0829ed099577.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

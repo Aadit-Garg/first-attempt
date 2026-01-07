@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clvgbkqbo6k10"
+path="res://.godot/imported/wet-footsteps-60476.mp3-64171ae7b4fa291a2b46cc3d940e4047.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/material sound/footstep_slime/wet-footsteps-60476.mp3"
+dest_files=["res://.godot/imported/wet-footsteps-60476.mp3-64171ae7b4fa291a2b46cc3d940e4047.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

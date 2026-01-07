@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8bvr3xsvdmo5"
+path="res://.godot/imported/zapsplat_human_male_single_breath_out_exhale_huff_frustrated_002_75282.mp3-88dd52fb1bf9ebdfca3dcb88c6b3f7c5.mp3str"
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER JUMP/zapsplat_human_male_single_breath_out_exhale_huff_frustrated_002_75282.mp3"
+dest_files=["res://.godot/imported/zapsplat_human_male_single_breath_out_exhale_huff_frustrated_002_75282.mp3-88dd52fb1bf9ebdfca3dcb88c6b3f7c5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
