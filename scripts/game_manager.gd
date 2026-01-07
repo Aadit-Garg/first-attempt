@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	#rate of infection
 	infection_level += delta * rate 
 	infection_level = clamp(infection_level, 0.0, 100.0)
-		
+
 #how it will work for health items
 func reduce_infection():
 	infection_level-=decrease

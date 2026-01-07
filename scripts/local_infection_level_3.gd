@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	GameManager.infection_level=0
 	get_tree().reload_current_scene()

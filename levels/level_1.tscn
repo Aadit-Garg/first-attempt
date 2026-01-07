@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvq846ck6dmhq"]
+[gd_scene load_steps=26 format=3 uid="uid://dvq846ck6dmhq"]
 
 [ext_resource type="Script" uid="uid://4hy4ihfvoxa" path="res://scripts/level_1.gd" id="1_3sk1a"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vn7o3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="6_5ot28"]
 [ext_resource type="Script" uid="uid://dgavng87k1cmh" path="res://scripts/local_infection_level_1.gd" id="7_aerfg"]
 [ext_resource type="Script" uid="uid://c8j3ne7j3w1at" path="res://scripts/exit.gd" id="8_l53as"]
+[ext_resource type="PackedScene" uid="uid://6hqt686tmr8a" path="res://scenes/death_screen.tscn" id="10_08mmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vn7o3"]
 texture = ExtResource("1_vn7o3")
@@ -114,6 +115,7 @@ texture = ExtResource("1_vn7o3")
 12:5/0 = 0
 13:5/0 = 0
 14:5/0 = 0
+14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:5/0 = 0
 0:6/0 = 0
 1:6/0 = 0
@@ -129,6 +131,7 @@ texture = ExtResource("1_vn7o3")
 12:6/0 = 0
 13:6/0 = 0
 14:6/0 = 0
+14:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:7/0 = 0
 1:7/0 = 0
 3:7/0 = 0
@@ -421,7 +424,6 @@ position = Vector2(-101, 68)
 zoom = Vector2(6, 6)
 
 [node name="canvas" parent="." instance=ExtResource("3_l53as")]
-visible = false
 offset_left = -2.0
 offset_top = -8.0
 offset_right = -2.0
@@ -458,6 +460,8 @@ position = Vector2(-76, 13)
 [node name="local_infection_level_1" type="Node2D" parent="."]
 script = ExtResource("7_aerfg")
 
+[node name="Timer" type="Timer" parent="local_infection_level_1"]
+
 [node name="exit" type="Area2D" parent="."]
 position = Vector2(216, -220)
 collision_mask = 20
@@ -467,4 +471,10 @@ script = ExtResource("8_l53as")
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_3sk1a")
 
+[node name="death_screen" parent="." instance=ExtResource("10_08mmt")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[connection signal="timeout" from="local_infection_level_1/Timer" to="local_infection_level_1" method="_on_timer_timeout"]
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
