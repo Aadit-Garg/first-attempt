@@ -400,6 +400,7 @@ size = Vector2(14, 19)
 [node name="level_2" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 tile_set = SubResource("TileSet_0srwa")
 format = 2
 layer_0/name = "world"

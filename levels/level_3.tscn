@@ -472,6 +472,7 @@ size = Vector2(270, 20)
 metadata/_edit_horizontal_guides_ = [56.0]
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 tile_set = SubResource("TileSet_gew73")
 format = 2
 layer_0/name = "world"
