@@ -358,6 +358,7 @@ size = Vector2(16.25, 19)
 script = ExtResource("1_kd133")
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 tile_set = SubResource("TileSet_kd133")
 format = 2
 layer_0/name = "world"
@@ -534,6 +535,7 @@ theme_override_font_sizes/font_size = 8
 visible = false
 
 [node name="item" type="Area2D" parent="."]
+texture_filter = 1
 position = Vector2(1, -286)
 collision_mask = 20
 

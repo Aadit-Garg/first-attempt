@@ -402,6 +402,7 @@ size = Vector2(14, 19)
 script = ExtResource("1_at1ld")
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 tile_set = SubResource("TileSet_0srwa")
 format = 2
 layer_0/name = "world"

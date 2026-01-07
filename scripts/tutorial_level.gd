@@ -18,4 +18,4 @@ func _on_item_body_entered(body: Node2D) -> void:
 
 
 func _on_exit_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://levels/level_2.tscn")
+	get_tree().change_scene_to_file("res://levels/level_1.tscn")
