@@ -122,6 +122,7 @@ texture = ExtResource("1_vsbdn")
 12:5/0 = 0
 13:5/0 = 0
 14:5/0 = 0
+14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:5/0 = 0
 0:6/0 = 0
 1:6/0 = 0
@@ -137,6 +138,7 @@ texture = ExtResource("1_vsbdn")
 12:6/0 = 0
 13:6/0 = 0
 14:6/0 = 0
+14:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:7/0 = 0
 1:7/0 = 0
 3:7/0 = 0
@@ -380,7 +382,7 @@ position = Vector2(7, -20)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(55, 9)
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 
 [node name="label" type="Node" parent="."]
 
@@ -511,6 +513,7 @@ position = Vector2(316, -273)
 shape = SubResource("RectangleShape2D_3gl33")
 
 [node name="ester" type="Area2D" parent="."]
+collision_mask = 20
 script = ExtResource("9_m53ac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ester"]
@@ -530,6 +533,7 @@ theme_override_fonts/font = ExtResource("4_o434n")
 theme_override_font_sizes/font_size = 8
 
 [node name="Timer" type="Timer" parent="surprise"]
+wait_time = 3.0
 
 [node name="canvas" parent="." instance=ExtResource("12_3gl33")]
 visible = false

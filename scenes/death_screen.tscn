@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://6hqt686tmr8a"]
+
+[ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="1_if853"]
+
+[node name="death_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 212.0
+offset_top = 262.0
+offset_right = 996.0
+offset_bottom = 377.0
+theme_override_colors/font_color = Color(0.71096426, 0.089437254, 0.16942853, 1)
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 64
+text = "YOU HAVE DIED!!!"
