@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=40 format=3 uid="uid://bot7k6rv4vx8m"]
 
+[ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
 [ext_resource type="PackedScene" uid="uid://ceux40ytl86a" path="res://scenes/player.tscn" id="2_0srwa"]
 [ext_resource type="PackedScene" uid="uid://bxbjlvjajkq5y" path="res://scenes/canvas.tscn" id="3_v5uil"]
@@ -398,6 +399,7 @@ size = Vector2(33, 50)
 size = Vector2(14, 19)
 
 [node name="level_2" type="Node2D"]
+script = ExtResource("1_at1ld")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -416,7 +418,6 @@ scale = Vector2(-1.4000022, 4.200039)
 zoom = Vector2(10, 10)
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
-visible = false
 offset_left = 89.0
 offset_top = -91.0
 offset_right = 89.0
