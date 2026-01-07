@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="6_5ot28"]
 [ext_resource type="Script" uid="uid://dgavng87k1cmh" path="res://scripts/local_infection_level_1.gd" id="7_aerfg"]
 [ext_resource type="Script" uid="uid://c8j3ne7j3w1at" path="res://scripts/exit.gd" id="8_l53as"]
-[ext_resource type="PackedScene" uid="uid://6hqt686tmr8a" path="res://scenes/death_screen.tscn" id="10_08mmt"]
+[ext_resource type="PackedScene" path="res://scenes/death_screen.tscn" id="10_08mmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vn7o3"]
 texture = ExtResource("1_vn7o3")
@@ -475,6 +475,8 @@ shape = SubResource("RectangleShape2D_3sk1a")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="timeout" from="local_infection_level_1/Timer" to="local_infection_level_1" method="_on_timer_timeout"]
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]

@@ -335,12 +335,14 @@ fill_from = Vector2(0.5, 0.49532712)
 fill_to = Vector2(0.16588785, 0.12149533)
 
 [node name="player" type="CharacterBody2D"]
+z_index = 5
 collision_layer = 4
 collision_mask = 3
 collision_priority = 5.0
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 texture_filter = 1
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
