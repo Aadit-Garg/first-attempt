@@ -1,0 +1,18 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwt113ugwl8sv"
+valid=false
+
+[deps]
+
+source_file="res://asset/game making/player sound (the father )/PLAYER FOOTSTEP/__MACOSX/zapsplat_pack_footsteps_single_boardwalk_mp3/._zapsplat_foley_footstep_single_wooden_board_walk_008_23304.mp3"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
