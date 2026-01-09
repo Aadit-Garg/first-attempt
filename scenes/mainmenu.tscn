@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7ubx6qr4hexb"]
 
-[ext_resource type="Texture2D" uid="uid://b1rog6cc7ffo6" path="res://asset/Gemini_Generated_Image_szs6sgszs6sgszs6.png" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://4esf385yjv30" path="res://scripts/mainmenu.gd" id="1_natt5"]
+[ext_resource type="Texture2D" uid="uid://bmj1f1d62duq" path="res://asset/535c7184-4470-4d93-a405-569fff8a7f97_0.jpg" id="2_natt5"]
 
 [node name="mainmenu" type="Control"]
 layout_mode = 3
@@ -19,17 +19,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_5mbse")
+texture = ExtResource("2_natt5")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="start" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.22
-anchor_top = 0.52
-anchor_right = 0.44
-anchor_bottom = 0.72
+anchor_left = 0.39800003
+anchor_top = 0.52500004
+anchor_right = 0.61800003
+anchor_bottom = 0.605
+offset_left = 0.5039673
+offset_top = -0.2000122
+offset_right = 0.5039673
+offset_bottom = -0.040008545
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
@@ -37,13 +41,33 @@ flat = true
 [node name="quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.56
-anchor_top = 0.52
-anchor_right = 0.78
-anchor_bottom = 0.72
+anchor_left = 0.395
+anchor_top = 0.781
+anchor_right = 0.628
+anchor_bottom = 0.88400006
+offset_left = -0.040008545
+offset_top = -0.088012695
+offset_right = -0.4560547
+offset_bottom = 0.16796875
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
+[node name="credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39100003
+anchor_top = 0.65400004
+anchor_right = 0.63000005
+anchor_bottom = 0.75000006
+offset_left = 0.56796265
+offset_top = 0.2079773
+offset_right = 0.2399292
+offset_bottom = 1.9999695
+grow_horizontal = 2
+grow_vertical = 0
+flat = true
+
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]

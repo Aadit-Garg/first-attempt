@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://i3r3y1or1iqy"]
+
+[ext_resource type="Script" uid="uid://ttul55rpwk4t" path="res://scripts/credits.gd" id="1_2ckv8"]
+[ext_resource type="Texture2D" uid="uid://cn3gmhr3vm2s7" path="res://asset/22abc022-ae4d-462a-b62a-3c66b9677a36_0.jpg" id="2_2ckv8"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ckv8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2ckv8")
+expand_mode = 1
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82000005
+anchor_top = 0.85
+anchor_right = 0.95300007
+anchor_bottom = 0.94600004
+offset_left = 0.35992432
+offset_top = 0.2000122
+offset_right = 0.1439209
+offset_bottom = -0.0079956055
+grow_horizontal = 0
+grow_vertical = 0
+flat = true
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
