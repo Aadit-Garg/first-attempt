@@ -83,8 +83,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a56xv"]
-radius = 2.0
-height = 8.0
+radius = 1.2726684
+height = 6.5440416
 
 [node name="enemy_left_right" type="Node2D"]
 scale = Vector2(3.667458, 3.667458)
@@ -110,5 +110,5 @@ target_position = Vector2(3, 0)
 position = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
-position = Vector2(0, 2)
+position = Vector2(-0.090673685, 1.6360106)
 shape = SubResource("CapsuleShape2D_a56xv")

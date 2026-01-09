@@ -425,7 +425,6 @@ position = Vector2(-101, 68)
 zoom = Vector2(6, 6)
 
 [node name="canvas" parent="." instance=ExtResource("3_l53as")]
-visible = false
 offset_left = -2.0
 offset_top = -8.0
 offset_right = -2.0
