@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4p7essvx1hl0"]
+
+[ext_resource type="Script" uid="uid://4mqf5bjeoekk" path="res://scripts/final_cutscene.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://crdm3rymngemo" path="res://asset/65f565ee-be93-4bfc-afbf-bca7d9ea53e3_0.jpg" id="2_image1"]
+[ext_resource type="Texture2D" uid="uid://c8lhn5mugg16j" path="res://asset/daughter.png" id="3_daughter"]
+[ext_resource type="Texture2D" uid="uid://cbxmk6814do1j" path="res://asset/father.png" id="4_father"]
+[ext_resource type="AudioStream" uid="uid://behk5jr6syqm6" path="res://asset/Sounds/music-guitar.mp3" id="5_music"]
+[ext_resource type="AudioStream" uid="uid://4gqpje6j7oed" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="6_typing"]
+[ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="7_font"]
+
+[node name="FinalCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ImageRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_image1")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ImageRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FatherSprite" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_father")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogueBox" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueBackground" type="ColorRect" parent="DialogueBox"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.85)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DaughterSprite" type="TextureRect" parent="DialogueBox/HBoxContainer"]
+modulate = Color(1, 0.5, 0.5, 0)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_daughter")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextLabel" type="RichTextLabel" parent="DialogueBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("7_font")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_music")
+volume_db = -5.0
+
+[node name="TypingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_typing")
+volume_db = -10.0
