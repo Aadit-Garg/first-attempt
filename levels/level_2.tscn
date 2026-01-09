@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=43 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://d25o1eeupgsm5" path="res://scripts/local_infection_level_2.gd" id="8_dfjjl"]
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="10_vm7no"]
 [ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="11_vm7no"]
+[ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="12_hbb88"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqqg8"]
 texture = ExtResource("1_mi4ay")
@@ -650,6 +651,8 @@ theme_override_font_sizes/font_size = 32
 text = "Restart"
 
 [node name="HUD" parent="." instance=ExtResource("11_vm7no")]
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("12_hbb88")]
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

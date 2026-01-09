@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://iwjtqr551ho4"]
+[gd_scene load_steps=33 format=3 uid="uid://iwjtqr551ho4"]
 
 [ext_resource type="Script" uid="uid://drujsyfgvhw1w" path="res://scripts/tutorial_level.gd" id="1_kd133"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vsbdn"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://c4y67pybmkxjs" path="res://asset/flashlight-pixel-art-illustration-for-game-development-free-vector-removebg-preview.png" id="14_2dtan"]
 [ext_resource type="Script" uid="uid://b5j2hh465na5x" path="res://scripts/flash_light.gd" id="15_0uau3"]
 [ext_resource type="Script" uid="uid://cypvundf1mor0" path="res://scripts/flash_dialouge.gd" id="17_rfm7h"]
+[ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="18_16x8o"]
+[ext_resource type="Script" uid="uid://cfvir00ghberl" path="res://scripts/local_infection_level_tutorial.gd" id="19_ylsy7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va8ia"]
 texture = ExtResource("1_vsbdn")
@@ -597,6 +599,61 @@ collision_mask = 116
 position = Vector2(1.125, -0.5)
 shape = SubResource("RectangleShape2D_ylsy7")
 
+[node name="CanvasLayer" parent="." instance=ExtResource("18_16x8o")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="death_screen" type="ColorRect" parent="CanvasLayer2"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer2/death_screen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -16.0
+offset_right = 132.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5568628, 0.07058824, 0.039215688, 1)
+theme_override_fonts/font = ExtResource("4_o434n")
+theme_override_font_sizes/font_size = 32
+text = "YOU DIED!!!"
+
+[node name="Button" type="Button" parent="CanvasLayer2/death_screen"]
+process_mode = 3
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.929
+anchor_right = 0.5
+anchor_bottom = 0.929
+offset_left = -105.0
+offset_top = -89.0
+offset_right = 110.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.5568628, 0.07058824, 0.039215688, 1)
+theme_override_fonts/font = ExtResource("4_o434n")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="local_infection_level" type="Node2D" parent="."]
+script = ExtResource("19_ylsy7")
+
 [connection signal="body_entered" from="first_enemy" to="first_enemy" method="_on_body_entered"]
 [connection signal="body_entered" from="first_infection" to="first_infection" method="_on_body_entered"]
 [connection signal="timeout" from="enemy_dialouge/Timer" to="enemy_dialouge" method="_on_timer_timeout"]
@@ -608,3 +665,4 @@ shape = SubResource("RectangleShape2D_ylsy7")
 [connection signal="timeout" from="Flash_light/Timer" to="Flash_light" method="_on_timer_timeout"]
 [connection signal="body_entered" from="line_flash" to="line_flash" method="_on_body_entered"]
 [connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
+[connection signal="pressed" from="CanvasLayer2/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
