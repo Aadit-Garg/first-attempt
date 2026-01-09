@@ -158,11 +158,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qflhk"]
-radius = 6.884506
-height = 30.335257
+radius = 7.22865
+height = 26.001305
 
 [node name="enemy_up_down" type="Node2D"]
-scale = Vector2(0.27999893, 0.27999893)
+scale = Vector2(0.16000122, 0.16000122)
 script = ExtResource("1_awlw7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -87,7 +87,7 @@ radius = 1.2726684
 height = 6.5440416
 
 [node name="enemy_left_right" type="Node2D"]
-scale = Vector2(3.667458, 3.667458)
+scale = Vector2(2.5694892, 2.6346397)
 script = ExtResource("1_4qm2a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

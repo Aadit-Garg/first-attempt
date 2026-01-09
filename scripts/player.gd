@@ -7,6 +7,7 @@ const SPEED = 100.0
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var timer: Timer = $Timer
 @onready var timer2: Timer = $Timer2
+@onready var footstep_player: AudioStreamPlayer2D = $footstep_player
 
 
 func _ready() -> void:
@@ -28,7 +29,10 @@ func _physics_process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
 	
-	
+	if direction!=Vector2.ZERO:
+		footstep_player.play()
+	else:
+		footstep_player.pause()
 	#light will look here
 	point_light.look_at(mouse_pos)
 	var look_vec = mouse_pos - global_position
