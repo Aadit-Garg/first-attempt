@@ -29,10 +29,14 @@ func _physics_process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	velocity+=Vector2(delta,delta)#make movement feel same for different fps
 	
-	if direction!=Vector2.ZERO:
-		footstep_player.play()
+	#Footstep sound
+	if direction != Vector2.ZERO:
+		if not footstep_player.playing:
+			footstep_player.pitch_scale = randf_range(0.9, 1.1)
+			footstep_player.play()
 	else:
-		footstep_player.pause()
+		footstep_player.stop()
+
 	#light will look here
 	point_light.look_at(mouse_pos)
 	var look_vec = mouse_pos - global_position
