@@ -506,8 +506,6 @@ position = Vector2(139, 478)
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
 
-[node name="CanvasLayer" parent="player" instance=ExtResource("5_q42ux")]
-
 [node name="boundary" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boundary"]
@@ -876,6 +874,8 @@ shape = SubResource("RectangleShape2D_glbqa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(312, -139)
 shape = SubResource("RectangleShape2D_hr8as")
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("5_q42ux")]
 
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6fa08kcatkvi"]
+[gd_scene load_steps=3 format=3 uid="uid://b6fa08kcatkvi"]
 
 [ext_resource type="AudioStream" uid="uid://burm7c2kr3taj" path="res://asset/game making/music (the mood)/goat themes/horror-piano-443326.mp3" id="1_f6gl3"]
+[ext_resource type="Script" uid="uid://bqfo5538fwtaf" path="res://scripts/bg_music.gd" id="2_8f2av"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_f6gl3")
 autoplay = true
 bus = &"bg"
+parameters/looping = true
+script = ExtResource("2_8f2av")

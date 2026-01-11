@@ -425,8 +425,6 @@ position = Vector2(1, -33)
 scale = Vector2(-1.4000022, 4.200039)
 zoom = Vector2(5, 5)
 
-[node name="CanvasLayer" parent="player" instance=ExtResource("4_wcjpl")]
-
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
 offset_left = 89.0
 offset_top = -91.0
@@ -664,6 +662,8 @@ text = "Restart"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(408, -398)
 shape = SubResource("RectangleShape2D_m4706")
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("4_wcjpl")]
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

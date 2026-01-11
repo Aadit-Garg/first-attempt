@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://i3r3y1or1iqy"]
+[gd_scene load_steps=4 format=3 uid="uid://i3r3y1or1iqy"]
 
 [ext_resource type="Script" uid="uid://ttul55rpwk4t" path="res://scripts/credits.gd" id="1_2ckv8"]
 [ext_resource type="Texture2D" uid="uid://cn3gmhr3vm2s7" path="res://asset/22abc022-ae4d-462a-b62a-3c66b9677a36_0.jpg" id="2_2ckv8"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="3_0ctdu"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -36,5 +37,7 @@ offset_bottom = -0.0079956055
 grow_horizontal = 0
 grow_vertical = 0
 flat = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_0ctdu")]
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
