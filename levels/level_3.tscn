@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cterenn7sh72w"]
+[gd_scene load_steps=70 format=3 uid="uid://cterenn7sh72w"]
 
 [ext_resource type="Script" uid="uid://b7uhhc2cm1vfh" path="res://scripts/level_3.gd" id="1_ofchu"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vkd0v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ddnx4422geobk" path="res://scenes/enemy_up_down.tscn" id="4_8l0e1"]
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="4_bmgug"]
 [ext_resource type="PackedScene" uid="uid://dv64c8ey3l8hn" path="res://scenes/enemy_left_right.tscn" id="5_lfnxh"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="5_q42ux"]
 [ext_resource type="Script" uid="uid://dxxmjonxfdd0u" path="res://scripts/local_infection_level_3.gd" id="7_lfnxh"]
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="9_jq78i"]
 [ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="10_lsnkt"]
@@ -504,6 +505,8 @@ position = Vector2(139, 478)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
+
+[node name="CanvasLayer" parent="player" instance=ExtResource("5_q42ux")]
 
 [node name="boundary" type="StaticBody2D" parent="."]
 

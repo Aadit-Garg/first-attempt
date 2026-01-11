@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://iwjtqr551ho4"]
+[gd_scene load_steps=34 format=3 uid="uid://iwjtqr551ho4"]
 
 [ext_resource type="Script" uid="uid://drujsyfgvhw1w" path="res://scripts/tutorial_level.gd" id="1_kd133"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vsbdn"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cypvundf1mor0" path="res://scripts/flash_dialouge.gd" id="17_rfm7h"]
 [ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="18_16x8o"]
 [ext_resource type="Script" uid="uid://cfvir00ghberl" path="res://scripts/local_infection_level_tutorial.gd" id="19_ylsy7"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="20_k6dx1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va8ia"]
 texture = ExtResource("1_vsbdn")
@@ -653,6 +654,8 @@ text = "Restart"
 
 [node name="local_infection_level" type="Node2D" parent="."]
 script = ExtResource("19_ylsy7")
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("20_k6dx1")]
 
 [connection signal="body_entered" from="first_enemy" to="first_enemy" method="_on_body_entered"]
 [connection signal="body_entered" from="first_infection" to="first_infection" method="_on_body_entered"]

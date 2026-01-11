@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=45 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxbjlvjajkq5y" path="res://scenes/canvas.tscn" id="3_v5uil"]
 [ext_resource type="Script" uid="uid://c70fnil0mtubm" path="res://scripts/exit_level_2.gd" id="4_ilhis"]
 [ext_resource type="PackedScene" uid="uid://dv64c8ey3l8hn" path="res://scenes/enemy_left_right.tscn" id="4_v5uil"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="4_wcjpl"]
 [ext_resource type="PackedScene" uid="uid://ddnx4422geobk" path="res://scenes/enemy_up_down.tscn" id="5_5722l"]
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="7_ep78u"]
 [ext_resource type="Script" uid="uid://d25o1eeupgsm5" path="res://scripts/local_infection_level_2.gd" id="8_dfjjl"]
@@ -423,6 +424,8 @@ position = Vector2(1, -33)
 [node name="Camera2D" type="Camera2D" parent="player"]
 scale = Vector2(-1.4000022, 4.200039)
 zoom = Vector2(5, 5)
+
+[node name="CanvasLayer" parent="player" instance=ExtResource("4_wcjpl")]
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
 offset_left = 89.0

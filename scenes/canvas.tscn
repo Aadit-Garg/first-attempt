@@ -16,7 +16,7 @@ grow_vertical = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(578, 340)
-color = Color(0.019607844, 0.019607844, 0.03137255, 1)
+color = Color(0, 0, 0, 0.7411765)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dvq846ck6dmhq"]
+[gd_scene load_steps=30 format=3 uid="uid://dvq846ck6dmhq"]
 
 [ext_resource type="Script" uid="uid://4hy4ihfvoxa" path="res://scripts/level_1.gd" id="1_3sk1a"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vn7o3"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="10_08mmt"]
 [ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="11_5ot28"]
 [ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="12_aerfg"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="13_nmsli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vn7o3"]
 texture = ExtResource("1_vn7o3")
@@ -538,6 +539,8 @@ text = "Restart"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(216, -238)
 shape = SubResource("RectangleShape2D_aerfg")
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("13_nmsli")]
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

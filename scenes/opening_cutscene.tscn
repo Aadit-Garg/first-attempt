@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d01n55axijkqm"]
+[gd_scene load_steps=12 format=3 uid="uid://d01n55axijkqm"]
 
 [ext_resource type="Script" uid="uid://276ulntmbf1" path="res://scripts/opening_cutscene.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://du7axdxpb1agf" path="res://asset/fonts/Minecraftia-Regular.ttf" id="2_font"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://behk5jr6syqm6" path="res://asset/Sounds/music-guitar.mp3" id="6_music"]
 [ext_resource type="AudioStream" uid="uid://bh0pftcoaykrr" path="res://asset/Sounds/ear-ring-86700.mp3" id="7_tinnitus"]
 [ext_resource type="AudioStream" uid="uid://4gqpje6j7oed" path="res://asset/Sounds/bllrr-text-loop-82399.mp3" id="8_typing"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="9_02jfn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_main"]
 font = ExtResource("2_font")
@@ -236,3 +237,5 @@ volume_db = -3.0
 [node name="TypingAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_typing")
 volume_db = -12.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource("9_02jfn")]
