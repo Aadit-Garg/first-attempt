@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvq846ck6dmhq"]
+[gd_scene load_steps=29 format=3 uid="uid://dvq846ck6dmhq"]
 
 [ext_resource type="Script" uid="uid://4hy4ihfvoxa" path="res://scripts/level_1.gd" id="1_3sk1a"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vn7o3"]
@@ -354,7 +354,10 @@ size = Vector2(50, 18)
 size = Vector2(20, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3sk1a"]
-size = Vector2(14, 18)
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aerfg"]
+size = Vector2(20, 22)
 
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_3sk1a")
@@ -423,7 +426,7 @@ shape = SubResource("RectangleShape2D_ryfpa")
 position = Vector2(-101, 68)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(6, 6)
+zoom = Vector2(5, 5)
 
 [node name="canvas" parent="." instance=ExtResource("3_l53as")]
 offset_left = -2.0
@@ -470,7 +473,7 @@ collision_mask = 20
 script = ExtResource("8_l53as")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
-position = Vector2(0, -1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3sk1a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -529,6 +532,12 @@ text = "Restart"
 [node name="HUD" parent="." instance=ExtResource("11_5ot28")]
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_aerfg")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(216, -238)
+shape = SubResource("RectangleShape2D_aerfg")
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

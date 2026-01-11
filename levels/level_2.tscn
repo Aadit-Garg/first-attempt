@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=44 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
@@ -403,6 +403,8 @@ size = Vector2(33, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgvos"]
 size = Vector2(14, 19)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4706"]
+
 [node name="level_2" type="Node2D"]
 script = ExtResource("1_at1ld")
 
@@ -420,7 +422,7 @@ position = Vector2(1, -33)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 scale = Vector2(-1.4000022, 4.200039)
-zoom = Vector2(6, 6)
+zoom = Vector2(5, 5)
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
 offset_left = 89.0
@@ -653,6 +655,12 @@ text = "Restart"
 [node name="HUD" parent="." instance=ExtResource("11_vm7no")]
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_hbb88")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(408, -398)
+shape = SubResource("RectangleShape2D_m4706")
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
