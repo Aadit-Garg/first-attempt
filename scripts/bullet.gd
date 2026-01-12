@@ -1,6 +1,6 @@
 extends Area2D
 
-
+var org
 var speed := 400.0
 var direction := Vector2.RIGHT
 
@@ -16,6 +16,8 @@ func _on_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent()
 	if enemy.has_method("freeze"):
 		enemy.freeze()
-		var org=enemy.get_node("kill").collision_mask
-		enemy.get_node("kill").collision_mask=0
-	queue_free()  
+	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()

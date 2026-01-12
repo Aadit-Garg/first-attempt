@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://pm1givo73xs5"]
+
+[ext_resource type="Script" uid="uid://b3y4hexakt6v1" path="res://scripts/new_enemy.gd" id="1_dy45e"]
+[ext_resource type="Texture2D" uid="uid://dffqboilbl20j" path="res://asset/Apocalypse Character Pack/Zombie/Idle.png" id="1_e0fy7"]
+[ext_resource type="PackedScene" uid="uid://c3rw3hedq8h8o" path="res://scenes/kill.tscn" id="2_8f630"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f630"]
+atlas = ExtResource("1_e0fy7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy45e"]
+atlas = ExtResource("1_e0fy7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x20wv"]
+atlas = ExtResource("1_e0fy7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhcds"]
+atlas = ExtResource("1_e0fy7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtco5"]
+atlas = ExtResource("1_e0fy7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6sryp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f630")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy45e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x20wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhcds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtco5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdd74"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jy8ax"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dy45e"]
+radius = 8.0
+height = 36.0
+
+[node name="new_enemy" type="CharacterBody2D"]
+scale = Vector2(0.35999924, 0.35999924)
+script = ExtResource("1_dy45e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -11)
+scale = Vector2(1.53125, 1.65625)
+sprite_frames = SubResource("SpriteFrames_6sryp")
+autoplay = "default"
+
+[node name="activation_radius" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="activation_radius"]
+scale = Vector2(13.888905, 13.888905)
+shape = SubResource("CircleShape2D_sdd74")
+
+[node name="deactivation_radius" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deactivation_radius"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_jy8ax")
+
+[node name="kill" parent="." instance=ExtResource("2_8f630")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_dy45e")
+
+[node name="forcheckingwalls" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.0000005)
+shape = SubResource("CapsuleShape2D_dy45e")
+
+[connection signal="body_entered" from="activation_radius" to="." method="_on_activation_radius_body_entered"]
+[connection signal="body_exited" from="deactivation_radius" to="." method="_on_deactivation_radius_body_exited"]

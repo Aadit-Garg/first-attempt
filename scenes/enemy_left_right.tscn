@@ -108,7 +108,6 @@ target_position = Vector2(3, 0)
 
 [node name="kill" parent="." instance=ExtResource("3_fs1eb")]
 position = Vector2(-1, 0)
-collision_mask = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
 position = Vector2(-0.090673685, 1.6360106)

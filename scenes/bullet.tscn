@@ -1,23 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://t2nmnmm5xg4f"]
+[gd_scene load_steps=9 format=3 uid="uid://t2nmnmm5xg4f"]
 
-[ext_resource type="Texture2D" uid="uid://d3jqyig67k2rk" path="res://asset/Light.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://babwldva7m8iu" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="Texture2D" uid="uid://bxndtl5wtfs46" path="res://asset/All_Fire_Bullet_Pixel_16x16.png" id="2_y25gk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5glv"]
+atlas = ExtResource("2_y25gk")
+region = Rect2(306, 126, 17, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoqba"]
+atlas = ExtResource("2_y25gk")
+region = Rect2(289, 126, 17, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qncy5"]
+atlas = ExtResource("2_y25gk")
+region = Rect2(272, 126, 17, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tamys"]
+atlas = ExtResource("2_y25gk")
+region = Rect2(255, 126, 17, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26lx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5glv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoqba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qncy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tamys")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cfmv"]
+radius = 4.0
+height = 16.0
 
 [node name="bullet" type="Area2D"]
 collision_layer = 128
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_y25gk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3.5762787e-07, 2.9802322e-07)
-scale = Vector2(0.08163266, 0.080000006)
-texture = ExtResource("1_mkf8s")
-region_enabled = true
-region_rect = Rect2(462.76294, 162.75757, 245.77222, 250.00952)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_26lx3")
+frame_progress = 0.119551234
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_y25gk")
+position = Vector2(0, 1)
+rotation = 1.5707964
+scale = Vector2(0.79999757, 1)
+shape = SubResource("CapsuleShape2D_1cfmv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
