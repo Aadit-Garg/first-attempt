@@ -9,7 +9,6 @@ const SPEED = 100.0
 @onready var timer2: Timer = $Timer2
 @onready var footstep_player: AudioStreamPlayer2D = $footstep_player
 
-
 func _ready() -> void:
 	if GlobalScript.checkpoint_pos!=Vector2(-999,-999):
 		global_position=GlobalScript.checkpoint_pos
@@ -77,6 +76,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+	
 func _on_timer_timeout() -> void:
 	collision_layer=original_collision_layer
 	collision_mask = original_collision_mask

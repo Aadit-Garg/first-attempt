@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ceux40ytl86a"]
+[gd_scene load_steps=53 format=3 uid="uid://ceux40ytl86a"]
 
 [ext_resource type="Script" uid="uid://cie8gn8rqvef7" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cibtnpiou6hiw" path="res://asset/Character/Character_SlashDownRight.png" id="2_d2wvv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://3k6x4ognugln" path="res://asset/Character/Character_Up.png" id="9_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://bjg333r4qjw5t" path="res://asset/Character/Character_UpRight.png" id="10_fulsm"]
 [ext_resource type="AudioStream" uid="uid://qddppbe3lsri" path="res://asset/audio-editor-output.mp3" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://cxy5f1vihij7i" path="res://scripts/gun.gd" id="13_jej6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("2_d2wvv")
@@ -333,9 +334,8 @@ z_index = 8
 texture_filter = 1
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"idle"
+animation = &"running_right"
 autoplay = "idle"
-frame_progress = 0.15408745
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -368,6 +368,10 @@ visible = false
 [node name="footstep_player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_3v2ag")
 bus = &"SFX"
+
+[node name="gun" type="Node2D" parent="."]
+position = Vector2(5, -5)
+script = ExtResource("13_jej6c")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

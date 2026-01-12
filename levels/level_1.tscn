@@ -426,7 +426,7 @@ shape = SubResource("RectangleShape2D_ryfpa")
 [node name="player" parent="." instance=ExtResource("2_gwceb")]
 position = Vector2(-101, 68)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D2" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
 
 [node name="canvas" parent="." instance=ExtResource("3_l53as")]

@@ -382,7 +382,7 @@ shape = SubResource("RectangleShape2D_7dfxr")
 [node name="player" parent="." instance=ExtResource("3_6ape0")]
 position = Vector2(7, -20)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D2" type="Camera2D" parent="player"]
 position = Vector2(55, 9)
 zoom = Vector2(5, 5)
 
@@ -485,6 +485,7 @@ one_shot = true
 script = ExtResource("7_707yn")
 
 [node name="Label" type="Label" parent="infection_dialouge"]
+texture_filter = 1
 offset_left = 85.0
 offset_top = -228.0
 offset_right = 125.0
