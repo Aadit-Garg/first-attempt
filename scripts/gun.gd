@@ -23,8 +23,14 @@ var spare_bullets: int   # Spare bullets available
 var reload_elapsed := 0.0
 
 func _ready() -> void:
-	bullets_in_gun = magazine_size  # Start with full magazine (5)
-	spare_bullets = magazine_size   # Start with spare bullets (5)
+	# Load ammo from GameManager if it exists, otherwise use defaults
+	if GameManager.bullets_in_gun >= 0:
+		bullets_in_gun = GameManager.bullets_in_gun
+		spare_bullets = GameManager.spare_bullets
+	else:
+		# First time loading - use default values
+		bullets_in_gun = magazine_size  # Start with full magazine (5)
+		spare_bullets = magazine_size   # Start with spare bullets (5)
 	# Emit initial ammo state
 	call_deferred("_emit_ammo_state")
 
@@ -58,7 +64,12 @@ func shoot() -> void:
 	can_shoot = false
 	bullets_in_gun -= 1
 	print("shooting - ammo: ", bullets_in_gun, "/", spare_bullets)
+	gunshot_sound.pitch_scale = randf_range(0.9, 1.1)
 	gunshot_sound.play()
+	
+	# Save ammo state to GameManager for persistence across levels
+	GameManager.bullets_in_gun = bullets_in_gun
+	GameManager.spare_bullets = spare_bullets
 	
 	# Play muzzle flash
 	muzzle_flash.visible = true
@@ -92,13 +103,11 @@ func reload() -> void:
 	reload_elapsed = 0.0
 	print("reloading...")
 	
-	# Hide reload prompt and start reload bar
 	needs_reload.emit(false)
 	reload_started.emit(reload_time)
 	
 	await get_tree().create_timer(reload_time).timeout
 	
-	# Calculate how many bullets to load
 	var bullets_needed = magazine_size - bullets_in_gun
 	var bullets_to_load = min(bullets_needed, spare_bullets)
 	
@@ -108,11 +117,16 @@ func reload() -> void:
 	is_reloading = false
 	print("reloaded - ammo: ", bullets_in_gun, "/", spare_bullets)
 	
+	GameManager.bullets_in_gun = bullets_in_gun
+	GameManager.spare_bullets = spare_bullets
+	
 	# Update HUD
 	reload_finished.emit()
 	ammo_changed.emit(bullets_in_gun, spare_bullets)
 
-# Call this to add spare ammo (e.g., from pickups)
 func add_spare_ammo(amount: int) -> void:
 	spare_bullets += amount
+
+	GameManager.bullets_in_gun = bullets_in_gun
+	GameManager.spare_bullets = spare_bullets
 	ammo_changed.emit(bullets_in_gun, spare_bullets)

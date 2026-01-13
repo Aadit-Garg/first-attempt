@@ -7,7 +7,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.infection_level=0
-	GameManager.rate=5
+	GameManager.rate=3
 	GameManager.decrease=18
 	glitch_rect.material.set_shader_parameter("infection_level", 0)
 	death_screen.visible=false
