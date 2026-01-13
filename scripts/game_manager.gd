@@ -2,9 +2,6 @@ extends Node
 var infection_level=1
 var rate=0
 var decrease=10
-
-# Ammo persistence across levels
-# -1 means "use default values" (first load)
 var bullets_in_gun: int = -1
 var spare_bullets: int = -1
 

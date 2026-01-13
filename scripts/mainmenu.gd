@@ -3,7 +3,7 @@ extends Control
 func _on_start_pressed() -> void:
 	print("start")
 	BgMusic.stream_paused=true
-	GameManager.reset_ammo()  # Reset ammo for new game
+	GameManager.reset_ammo() 
 	get_tree().change_scene_to_file("res://scenes/opening_cutscene.tscn")
 
 
