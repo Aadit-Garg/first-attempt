@@ -4,6 +4,7 @@ extends Node2D
 @export var fire_rate := 0  # Seconds between shots
 @onready var shoot_raycast: RayCast2D = $shoot_raycast
 @onready var laser_line: Line2D = $LaserLine
+@onready var gunshot_sound: AudioStreamPlayer = $GunshotSound
 
 var can_shoot := true
 
@@ -22,6 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func shoot() -> void:
 	can_shoot = false
 	print("shooting")
+	gunshot_sound.play()
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position
 	bullet.direction = (get_global_mouse_position() - global_position).normalized()
