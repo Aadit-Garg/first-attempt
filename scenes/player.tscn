@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ceux40ytl86a"]
+[gd_scene load_steps=58 format=3 uid="uid://ceux40ytl86a"]
 
 [ext_resource type="Script" uid="uid://cie8gn8rqvef7" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cibtnpiou6hiw" path="res://asset/Character/Character_SlashDownRight.png" id="2_d2wvv"]
@@ -16,6 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://bum2aac7k4v0" path="res://asset/Gemini_Generated_Image_hc28wqhc28wqhc28.png" id="14_f1ej7"]
 [ext_resource type="AudioStream" uid="uid://7mfqjl6elka0" path="res://asset/Sounds/glock19-18535.mp3" id="15_glock"]
 [ext_resource type="PackedScene" uid="uid://fhrc40iiuftx" path="res://scenes/muzzle2d.tscn" id="16_muzzle"]
+
+[sub_resource type="Gradient" id="Gradient_a8ls1"]
+offsets = PackedFloat32Array(0.18666667, 0.9533333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qfm1y"]
+gradient = SubResource("Gradient_a8ls1")
+width = 70
+height = 70
+fill = 1
+fill_from = Vector2(0, 0.49999997)
+fill_to = Vector2(0.43925232, 0.23831774)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("2_d2wvv")
@@ -369,6 +381,14 @@ z_index = 10
 position = Vector2(9, -1.1920929e-07)
 scale = Vector2(0.07092104, 0.06646001)
 frame_progress = 0.4107146
+
+[node name="MuzzleLight" type="PointLight2D" parent="gun"]
+position = Vector2(26.000002, -9.536743e-07)
+scale = Vector2(1.019866, 0.609375)
+color = Color(1, 0.7, 0.3, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_qfm1y")
+texture_scale = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 100

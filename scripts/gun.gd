@@ -15,6 +15,7 @@ signal reload_finished()
 @onready var laser_line: Line2D = $LaserLine
 @onready var gunshot_sound: AudioStreamPlayer = $GunshotSound
 @onready var muzzle_flash: AnimatedSprite2D = $MuzzleFlash
+@onready var muzzle_light: PointLight2D = $MuzzleLight
 
 var can_shoot := true
 var is_reloading := false
@@ -71,9 +72,14 @@ func shoot() -> void:
 	GameManager.bullets_in_gun = bullets_in_gun
 	GameManager.spare_bullets = spare_bullets
 	
-	# Play muzzle flash
+	# Play muzzle flash and light
 	muzzle_flash.visible = true
 	muzzle_flash.play("default")
+	muzzle_light.visible = true
+	
+	# Turn off light quickly (0.04 sec)
+	await get_tree().create_timer(0.04).timeout
+	muzzle_light.visible = false
 	
 	# Update HUD
 	ammo_changed.emit(bullets_in_gun, spare_bullets)
@@ -87,7 +93,7 @@ func shoot() -> void:
 	get_tree().current_scene.add_child(bullet)
 	
 	# Hide muzzle flash after animation
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.24).timeout
 	muzzle_flash.visible = false
 	muzzle_flash.stop()
 	
