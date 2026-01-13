@@ -457,7 +457,6 @@ offset_bottom = 23.0
 text = "You must drink the milk to decrease its level"
 
 [node name="enemy_left_right" parent="." instance=ExtResource("5_707yn")]
-visible = false
 position = Vector2(53, -110)
 
 [node name="first_infection" type="Area2D" parent="."]
