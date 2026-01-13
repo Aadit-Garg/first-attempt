@@ -158,8 +158,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qflhk"]
-radius = 7.22865
-height = 26.001305
+radius = 4.8191
+height = 30.334913
 
 [node name="enemy_up_down" type="Node2D"]
 scale = Vector2(0.16000122, 0.16000122)
@@ -167,7 +167,8 @@ script = ExtResource("1_awlw7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3.667, 4.315)
+position = Vector2(-4.7683716e-07, 0)
+scale = Vector2(3.2006772, 4.315)
 sprite_frames = SubResource("SpriteFrames_8n1ic")
 animation = &"walk_up"
 
@@ -182,6 +183,6 @@ target_position = Vector2(0, -21)
 [node name="kill" parent="." instance=ExtResource("3_guvka")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
-position = Vector2(0, 7.1428847)
+position = Vector2(0, 6.2499523)
 scale = Vector2(2.5938258, 3.2965066)
 shape = SubResource("CapsuleShape2D_qflhk")
