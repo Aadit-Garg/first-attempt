@@ -662,7 +662,6 @@ text = "Restart"
 script = ExtResource("19_ylsy7")
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("20_k6dx1")]
-visible = false
 
 [node name="new_enemy" parent="." instance=ExtResource("21_6ofqs")]
 position = Vector2(20, -207)

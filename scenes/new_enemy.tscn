@@ -353,8 +353,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jy8ax"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dy45e"]
-radius = 8.0
-height = 36.0
+radius = 8.333351
+height = 39.777836
 
 [node name="new_enemy" type="CharacterBody2D"]
 scale = Vector2(0.35999924, 0.35999924)
@@ -387,11 +387,11 @@ shape = SubResource("CircleShape2D_jy8ax")
 [node name="kill" parent="." instance=ExtResource("2_8f630")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
-position = Vector2(0, -6)
+position = Vector2(-2.7777836, -8.333351)
 shape = SubResource("CapsuleShape2D_dy45e")
 
 [node name="forcheckingwalls" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.0000005)
+position = Vector2(-2.7777836, -8.333351)
 scale = Vector2(0.88889414, 0.88889414)
 shape = SubResource("CapsuleShape2D_dy45e")
 
