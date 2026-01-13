@@ -324,7 +324,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.49532712)
 fill_to = Vector2(0.16588785, 0.12149533)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 collision_layer = 4
 collision_mask = 259
@@ -366,7 +366,6 @@ wait_time = 30.0
 one_shot = true
 
 [node name="movement_particles" type="GPUParticles2D" parent="."]
-visible = false
 
 [node name="footstep_player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_3v2ag")

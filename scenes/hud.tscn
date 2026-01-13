@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://deeb8xv0lhdxh"]
+[gd_scene load_steps=9 format=3 uid="uid://deeb8xv0lhdxh"]
 
 [ext_resource type="Script" uid="uid://djudi6mjpj1sy" path="res://scripts/hud.gd" id="1_ahhtf"]
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="2_oo0fn"]
@@ -15,6 +15,25 @@ colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5ysmq"]
 gradient = SubResource("Gradient_oo0fn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reload_bg"]
+bg_color = Color(0.15, 0.15, 0.15, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reload_fill"]
+bg_color = Color(0.2, 0.8, 0.3, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
@@ -42,3 +61,127 @@ offset_right = 194.0
 offset_bottom = 3.0
 theme_override_fonts/font = ExtResource("2_oo0fn")
 text = "INFECTION LEVEL"
+
+[node name="AmmoContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -823.0
+offset_top = -119.0
+offset_right = -663.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AmmoBackground" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.9)
+
+[node name="AmmoBorder" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = -5.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AmmoInner" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.08, 1)
+
+[node name="AmmoLabel" type="Label" parent="AmmoContainer"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 20
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineLeft" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+offset_left = -3.0
+offset_top = 48.0
+offset_right = 156.0
+offset_bottom = 52.0
+
+[node name="LineRight" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+offset_left = 165.0
+offset_top = 18.0
+offset_right = 165.0
+offset_bottom = 22.0
+
+[node name="LineRightVert" type="ColorRect" parent="AmmoContainer"]
+layout_mode = 1
+offset_left = 153.15771
+offset_top = 51.809875
+offset_right = 157.91064
+offset_bottom = 95.87933
+rotation = -0.8781817
+
+[node name="ReloadPrompt" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.75, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 14
+text = "Press R to Reload"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReloadBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -828.0
+offset_top = -64.0
+offset_right = -668.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_reload_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_reload_fill")
+show_percentage = false

@@ -1,29 +1,68 @@
 extends Node2D
 
-@export var bullet_scene: PackedScene=preload("res://scenes/bullet.tscn")  # Assign bullet.tscn in the inspector
-@export var fire_rate := 0  # Seconds between shots
+signal ammo_changed(bullets_in_gun: int, spare_bullets: int)
+signal needs_reload(should_show: bool)
+signal reload_started(reload_time: float)
+signal reload_progress(progress: float)
+signal reload_finished()
+
+@export var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+@export var fire_rate := 0.0  # Seconds between shots
+@export var magazine_size := 5  # Bullets per magazine
+@export var reload_time := 1.5  # Seconds to reload
+
 @onready var shoot_raycast: RayCast2D = $shoot_raycast
 @onready var laser_line: Line2D = $LaserLine
 @onready var gunshot_sound: AudioStreamPlayer = $GunshotSound
 
 var can_shoot := true
+var is_reloading := false
+var bullets_in_gun: int  # Current bullets in magazine
+var spare_bullets: int   # Spare bullets available
+var reload_elapsed := 0.0
+
+func _ready() -> void:
+	bullets_in_gun = magazine_size  # Start with full magazine (5)
+	spare_bullets = magazine_size   # Start with spare bullets (5)
+	# Emit initial ammo state
+	call_deferred("_emit_ammo_state")
+
+func _emit_ammo_state() -> void:
+	ammo_changed.emit(bullets_in_gun, spare_bullets)
+	needs_reload.emit(bullets_in_gun == 0 and spare_bullets > 0)
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	if shoot_raycast.is_colliding():
-		var cp= shoot_raycast.get_collision_point() 
-		var local_cp=to_local(cp)
+		var cp = shoot_raycast.get_collision_point()
+		var local_cp = to_local(cp)
 		laser_line.points[1] = local_cp
+	
+	# Update reload progress
+	if is_reloading:
+		reload_elapsed += delta
+		var progress = clamp(reload_elapsed / reload_time, 0.0, 1.0)
+		reload_progress.emit(progress)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Shoot") and can_shoot:
-		shoot()
-		
+	if event.is_action_pressed("Shoot") and can_shoot and not is_reloading:
+		if bullets_in_gun > 0:
+			shoot()
+	
+	if event.is_action_pressed("Reload") and not is_reloading:
+		if bullets_in_gun < magazine_size and spare_bullets > 0:
+			reload()
 
 func shoot() -> void:
 	can_shoot = false
-	print("shooting")
+	bullets_in_gun -= 1
+	print("shooting - ammo: ", bullets_in_gun, "/", spare_bullets)
 	gunshot_sound.play()
+	
+	# Update HUD
+	ammo_changed.emit(bullets_in_gun, spare_bullets)
+	needs_reload.emit(bullets_in_gun == 0 and spare_bullets > 0)
+	
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position
 	bullet.direction = (get_global_mouse_position() - global_position).normalized()
@@ -34,3 +73,36 @@ func shoot() -> void:
 	# Fire rate cooldown
 	await get_tree().create_timer(fire_rate).timeout
 	can_shoot = true
+
+func reload() -> void:
+	if is_reloading or spare_bullets <= 0:
+		return
+	
+	is_reloading = true
+	reload_elapsed = 0.0
+	print("reloading...")
+	
+	# Hide reload prompt and start reload bar
+	needs_reload.emit(false)
+	reload_started.emit(reload_time)
+	
+	await get_tree().create_timer(reload_time).timeout
+	
+	# Calculate how many bullets to load
+	var bullets_needed = magazine_size - bullets_in_gun
+	var bullets_to_load = min(bullets_needed, spare_bullets)
+	
+	bullets_in_gun += bullets_to_load
+	spare_bullets -= bullets_to_load
+	
+	is_reloading = false
+	print("reloaded - ammo: ", bullets_in_gun, "/", spare_bullets)
+	
+	# Update HUD
+	reload_finished.emit()
+	ammo_changed.emit(bullets_in_gun, spare_bullets)
+
+# Call this to add spare ammo (e.g., from pickups)
+func add_spare_ammo(amount: int) -> void:
+	spare_bullets += amount
+	ammo_changed.emit(bullets_in_gun, spare_bullets)
