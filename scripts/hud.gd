@@ -6,7 +6,6 @@ var infec
 @onready var reload_prompt: Label = $ReloadPrompt
 @onready var ammo_container: Control = $AmmoContainer
 @onready var reload_bar: ProgressBar = $ReloadBar
-@onready var ammo_line: Line2D = $AmmoLine
 
 func _ready() -> void:
 	# Find the gun and connect to its signals
@@ -44,7 +43,7 @@ func _on_ammo_changed(bullets_in_gun: int, spare_bullets: int) -> void:
 func _on_needs_reload(should_show: bool) -> void:
 	reload_prompt.visible = should_show
 
-func _on_reload_started(reload_time: float) -> void:
+func _on_reload_started(_reload_time: float) -> void:
 	reload_bar.visible = true
 	reload_bar.value = 0
 

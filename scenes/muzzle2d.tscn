@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://fhrc40iiuftx"]
+
+[ext_resource type="Texture2D" uid="uid://6yknsjuog6ig" path="res://asset/Gemini_Generated_Image_pl797hpl797hpl79.png" id="1_h2xkn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nychh"]
+atlas = ExtResource("1_h2xkn")
+region = Rect2(0, 123, 169, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3m03"]
+atlas = ExtResource("1_h2xkn")
+region = Rect2(338, 123, 169, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_331yw"]
+atlas = ExtResource("1_h2xkn")
+region = Rect2(169, 123, 169, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcpba"]
+atlas = ExtResource("1_h2xkn")
+region = Rect2(507, 123, 169, 123)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j531i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nychh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3m03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_331yw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcpba")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(19, -4)
+rotation = 3.1415927
+sprite_frames = SubResource("SpriteFrames_j531i")

@@ -14,6 +14,7 @@ signal reload_finished()
 @onready var shoot_raycast: RayCast2D = $shoot_raycast
 @onready var laser_line: Line2D = $LaserLine
 @onready var gunshot_sound: AudioStreamPlayer = $GunshotSound
+@onready var muzzle_flash: AnimatedSprite2D = $MuzzleFlash
 
 var can_shoot := true
 var is_reloading := false
@@ -59,6 +60,10 @@ func shoot() -> void:
 	print("shooting - ammo: ", bullets_in_gun, "/", spare_bullets)
 	gunshot_sound.play()
 	
+	# Play muzzle flash
+	muzzle_flash.visible = true
+	muzzle_flash.play("default")
+	
 	# Update HUD
 	ammo_changed.emit(bullets_in_gun, spare_bullets)
 	needs_reload.emit(bullets_in_gun == 0 and spare_bullets > 0)
@@ -69,6 +74,11 @@ func shoot() -> void:
 	bullet.rotation = bullet.direction.angle()
 	
 	get_tree().current_scene.add_child(bullet)
+	
+	# Hide muzzle flash after animation
+	await get_tree().create_timer(0.25).timeout
+	muzzle_flash.visible = false
+	muzzle_flash.stop()
 	
 	# Fire rate cooldown
 	await get_tree().create_timer(fire_rate).timeout
