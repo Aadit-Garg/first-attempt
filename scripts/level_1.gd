@@ -4,6 +4,8 @@ extends Node2D
 @onready var glitch_rect: Control = $canvas/CanvasLayer/ColorRect
 @onready var transition_rect = $CanvasLayer2/TransitionRect
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.infection_level=0
@@ -12,3 +14,4 @@ func _ready() -> void:
 	glitch_rect.material.set_shader_parameter("infection_level", 0)
 	death_screen.visible=false
 	transition_rect.modulate.a = 0.0
+#player.muzzle_flash.visible=false

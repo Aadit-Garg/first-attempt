@@ -24,6 +24,8 @@ var spare_bullets: int   # Spare bullets available
 var reload_elapsed := 0.0
 
 func _ready() -> void:
+	muzzle_flash.visible = false
+	muzzle_light.visible = false
 	# Load ammo from GameManager if it exists, otherwise use defaults
 	if GameManager.bullets_in_gun >= 0:
 		bullets_in_gun = GameManager.bullets_in_gun
