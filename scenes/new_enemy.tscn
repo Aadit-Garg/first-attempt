@@ -1,9 +1,10 @@
-[gd_scene load_steps=54 format=3 uid="uid://pm1givo73xs5"]
+[gd_scene load_steps=59 format=3 uid="uid://pm1givo73xs5"]
 
-[ext_resource type="Script" uid="uid://b3y4hexakt6v1" path="res://scripts/new_enemy.gd" id="1_dy45e"]
+[ext_resource type="Script" uid="uid://3bd0a4dsg13d" path="res://scripts/new_enemy.gd" id="1_dy45e"]
 [ext_resource type="Texture2D" uid="uid://dffqboilbl20j" path="res://asset/Apocalypse Character Pack/Zombie/Idle.png" id="1_e0fy7"]
 [ext_resource type="PackedScene" uid="uid://c3rw3hedq8h8o" path="res://scenes/kill.tscn" id="2_8f630"]
 [ext_resource type="Texture2D" uid="uid://b3hntaqybpaxt" path="res://asset/Apocalypse Character Pack/Zombie/Walk.png" id="3_x20wv"]
+[ext_resource type="Script" uid="uid://uygoivokoopm" path="res://scripts/enemy_bar.gd" id="5_qhcds"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f630"]
 atlas = ExtResource("1_e0fy7")
@@ -356,6 +357,19 @@ animations = [{
 radius = 8.333351
 height = 39.777836
 
+[sub_resource type="Gradient" id="Gradient_x20wv"]
+offsets = PackedFloat32Array(0.028985508, 1)
+colors = PackedColorArray(0.14509805, 0.14509805, 0.14509805, 1, 0.14509805, 0.14509805, 0.14509805, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhcds"]
+gradient = SubResource("Gradient_x20wv")
+
+[sub_resource type="Gradient" id="Gradient_gtco5"]
+colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6sryp"]
+gradient = SubResource("Gradient_gtco5")
+
 [node name="new_enemy" type="CharacterBody2D"]
 scale = Vector2(0.35999924, 0.35999924)
 script = ExtResource("1_dy45e")
@@ -394,6 +408,17 @@ shape = SubResource("CapsuleShape2D_dy45e")
 position = Vector2(-2.7777836, -8.333351)
 scale = Vector2(0.88889414, 0.88889414)
 shape = SubResource("CapsuleShape2D_dy45e")
+
+[node name="enemy_bar" type="TextureProgressBar" parent="."]
+offset_left = -13.888919
+offset_top = -36.111187
+offset_right = 11.111135
+offset_bottom = -33.222435
+pivot_offset = Vector2(0, 3.8146973e-06)
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_qhcds")
+texture_progress = SubResource("GradientTexture2D_6sryp")
+script = ExtResource("5_qhcds")
 
 [connection signal="body_entered" from="activation_radius" to="." method="_on_activation_radius_body_entered"]
 [connection signal="body_exited" from="deactivation_radius" to="." method="_on_deactivation_radius_body_exited"]

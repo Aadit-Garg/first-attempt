@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dns15tvj45g75"]
+[gd_scene load_steps=9 format=3 uid="uid://dns15tvj45g75"]
 
 [ext_resource type="Script" uid="uid://b60iyiayxhyu2" path="res://testing.gd" id="1_nqmqf"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="2_qyon5"]
 [ext_resource type="PackedScene" uid="uid://ceux40ytl86a" path="res://scenes/player.tscn" id="3_6c6g8"]
 [ext_resource type="PackedScene" uid="uid://b7gy0dhrbd1r" path="res://scenes/tyrant_enemy.tscn" id="4_qyon5"]
+[ext_resource type="PackedScene" uid="uid://pm1givo73xs5" path="res://scenes/new_enemy.tscn" id="5_6c6g8"]
+[ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="6_ynapc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynapc"]
 texture = ExtResource("2_qyon5")
@@ -312,3 +314,8 @@ position = Vector2(-93, 128)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
+
+[node name="new_enemy" parent="." instance=ExtResource("5_6c6g8")]
+position = Vector2(-226, 150)
+
+[node name="HUD" parent="." instance=ExtResource("6_ynapc")]

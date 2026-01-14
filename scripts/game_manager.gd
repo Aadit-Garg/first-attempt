@@ -8,6 +8,7 @@ var bullets_in_gun: int = -1
 var spare_bullets: int = -1
 var shooting=false
 var gun_found=false
+
 func reset_ammo() -> void:
 	bullets_in_gun = -1
 	spare_bullets = -1

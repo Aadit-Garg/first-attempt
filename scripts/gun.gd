@@ -7,7 +7,7 @@ signal reload_progress(progress: float)
 signal reload_finished()
 
 @export var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
-@export var fire_rate := 0.0  # Seconds between shots
+@export var fire_rate := 0.1  # Seconds between shots
 @export var magazine_size := 5  # Bullets per magazine
 @export var reload_time := 1.5  # Seconds to reload
 
@@ -73,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			reload()
 
 func shoot() -> void:
-	can_shoot = false
+	GameManager.shooting = false
 	bullets_in_gun -= 1
 	print("shooting - ammo: ", bullets_in_gun, "/", spare_bullets)
 	gunshot_sound.pitch_scale = randf_range(0.9, 1.1)
@@ -110,7 +110,7 @@ func shoot() -> void:
 	
 	# Fire rate cooldown
 	await get_tree().create_timer(fire_rate).timeout
-	can_shoot = true
+	GameManager.shooting = true
 
 func reload() -> void:
 	if is_reloading or spare_bullets <= 0:
