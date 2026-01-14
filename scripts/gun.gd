@@ -17,13 +17,16 @@ signal reload_finished()
 @onready var muzzle_flash: AnimatedSprite2D = $MuzzleFlash
 @onready var muzzle_light: PointLight2D = $MuzzleLight
 
-var can_shoot := true
+var can_shoot = GameManager.shooting
+var gun_visible=GameManager.gun_found
 var is_reloading := false
 var bullets_in_gun: int  # Current bullets in magazine
 var spare_bullets: int   # Spare bullets available
 var reload_elapsed := 0.0
 
 func _ready() -> void:
+	if !gun_visible:
+		visible=false
 	muzzle_flash.visible = false
 	muzzle_light.visible = false
 	# Load ammo from GameManager if it exists, otherwise use defaults
@@ -42,6 +45,7 @@ func _emit_ammo_state() -> void:
 	needs_reload.emit(bullets_in_gun == 0 and spare_bullets > 0)
 
 func _process(delta: float) -> void:
+	can_shoot = GameManager.shooting
 	look_at(get_global_mouse_position())
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()

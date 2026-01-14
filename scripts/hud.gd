@@ -1,13 +1,15 @@
 extends CanvasLayer
-
-var infec
 @onready var infec_bar: TextureProgressBar = $Infec_bar
 @onready var ammo_label: Label = $AmmoContainer/AmmoLabel
 @onready var reload_prompt: Label = $ReloadPrompt
 @onready var ammo_container: Control = $AmmoContainer
 @onready var reload_bar: ProgressBar = $ReloadBar
+var infec
+var show=GameManager.gun_found
 
 func _ready() -> void:
+	if !show:
+		ammo_container.visible=false
 	# Find the gun and connect to its signals
 	call_deferred("_connect_gun_signals")
 	reload_prompt.visible = false
