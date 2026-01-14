@@ -49,6 +49,8 @@ func _process(delta: float) -> void:
 	gun_visible=GameManager.gun_found
 	if gun_visible:
 		visible=true
+	else:
+		visible=false
 	look_at(get_global_mouse_position())
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()

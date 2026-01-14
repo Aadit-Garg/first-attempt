@@ -35,6 +35,8 @@ func _process(delta: float) -> void:
 	show=GameManager.gun_found
 	if show:
 		ammo_container.visible=true
+	else:
+		ammo_container.visible=false
 	infec = GameManager.infection_level
 	update_infection(infec, 100)
 
