@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2rf47jknexum"]
+[gd_scene load_steps=26 format=3 uid="uid://b2rf47jknexum"]
 
 [ext_resource type="Script" uid="uid://b7m1huepbxn0m" path="res://scripts/passage_get_gun.gd" id="1_5mm4o"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_31wm6"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://b4k2f6b0gvrrn" path="res://scripts/local_infection_level_passage_gun.gd" id="6_dddyc"]
 [ext_resource type="PackedScene" uid="uid://bxbjlvjajkq5y" path="res://scenes/canvas.tscn" id="7_cw415"]
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="8_cw415"]
+[ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="9_8ditg"]
+[ext_resource type="PackedScene" uid="uid://pm1givo73xs5" path="res://scenes/new_enemy.tscn" id="9_pe7hn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hacd5"]
 texture = ExtResource("1_31wm6")
@@ -327,7 +329,7 @@ size = Vector2(209, 82)
 size = Vector2(64, 129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_006ye"]
-size = Vector2(20, 107)
+size = Vector2(20, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmmre"]
 size = Vector2(20, 110)
@@ -399,7 +401,7 @@ position = Vector2(192, -383.5)
 shape = SubResource("RectangleShape2D_5mm4o")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="boundary"]
-position = Vector2(38, -502.5)
+position = Vector2(38, -504)
 shape = SubResource("RectangleShape2D_006ye")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="boundary"]
@@ -430,7 +432,6 @@ texture = ExtResource("3_q2ac4")
 
 [node name="check" type="StaticBody2D" parent="."]
 position = Vector2(0, -280)
-collision_layer = 0
 collision_mask = 20
 
 [node name="gun_not_taken" type="CollisionShape2D" parent="check"]
@@ -500,4 +501,24 @@ action_mode = 0
 button_mask = 7
 text = "Restart"
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("9_8ditg")]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="new_enemy" parent="enemies" instance=ExtResource("9_pe7hn")]
+position = Vector2(86, -468)
+
+[node name="new_enemy2" parent="enemies" instance=ExtResource("9_pe7hn")]
+position = Vector2(100, -455)
+
+[node name="new_enemy3" parent="enemies" instance=ExtResource("9_pe7hn")]
+position = Vector2(98, -476)
+
+[node name="new_enemy4" parent="enemies" instance=ExtResource("9_pe7hn")]
+position = Vector2(174, -463)
+
+[node name="new_enemy5" parent="enemies" instance=ExtResource("9_pe7hn")]
+position = Vector2(183, -457)
+
 [connection signal="body_entered" from="item_gun" to="." method="_on_item_gun_body_entered"]
+[connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
