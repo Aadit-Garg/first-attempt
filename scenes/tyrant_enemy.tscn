@@ -1,0 +1,136 @@
+[gd_scene load_steps=19 format=3 uid="uid://b7gy0dhrbd1r"]
+
+[ext_resource type="Script" uid="uid://cjxto3igrp1t" path="res://scripts/tyrant_enemy.gd" id="1_bbou3"]
+[ext_resource type="Texture2D" uid="uid://bsjtqql1dwxtk" path="res://asset/tyrant4.png" id="2_pgipg"]
+[ext_resource type="PackedScene" uid="uid://c3rw3hedq8h8o" path="res://scenes/kill.tscn" id="3_jpoaw"]
+[ext_resource type="Texture2D" uid="uid://cc4ml7vwomg05" path="res://asset/tyrant5.png" id="3_pgipg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbou3"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(0, 0, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgipg"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(169, 0, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpoaw"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(338, 0, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vei7"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(169, 92, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51c7b"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(338, 92, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7ksn"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(507, 92, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjhej"]
+atlas = ExtResource("2_pgipg")
+region = Rect2(507, 0, 169, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpssy"]
+atlas = ExtResource("3_pgipg")
+region = Rect2(174, 87, 87, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50mf2"]
+atlas = ExtResource("3_pgipg")
+region = Rect2(261, 87, 87, 87)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpssy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbou3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgipg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpoaw")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vei7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51c7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7ksn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjhej")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpssy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50mf2")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50mf2"]
+radius = 15.033297
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bvqj1"]
+radius = 18.0
+height = 76.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wd7i4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rf6g3"]
+
+[node name="tyrant_enemy" type="CharacterBody2D"]
+scale = Vector2(0.44000354, 0.44000354)
+script = ExtResource("1_bbou3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bpssy")
+animation = &"walk_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 4)
+shape = SubResource("CircleShape2D_50mf2")
+
+[node name="kill" parent="." instance=ExtResource("3_jpoaw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_bvqj1")
+
+[node name="activation_radius" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="activation_radius"]
+scale = Vector2(32, 32)
+shape = SubResource("CircleShape2D_wd7i4")
+
+[node name="deactivation_radius" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deactivation_radius"]
+scale = Vector2(60, 60)
+shape = SubResource("CircleShape2D_rf6g3")
+
+[connection signal="body_entered" from="activation_radius" to="." method="_on_activation_radius_body_entered"]
+[connection signal="body_exited" from="deactivation_radius" to="." method="_on_deactivation_radius_body_exited"]
