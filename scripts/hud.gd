@@ -32,6 +32,9 @@ func _connect_gun_signals() -> void:
 			ammo_label.text = str(gun.bullets_in_gun) + "/" + str(gun.spare_bullets)
 
 func _process(delta: float) -> void:
+	show=GameManager.gun_found
+	if show:
+		ammo_container.visible=true
 	infec = GameManager.infection_level
 	update_infection(infec, 100)
 

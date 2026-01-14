@@ -46,6 +46,9 @@ func _emit_ammo_state() -> void:
 
 func _process(delta: float) -> void:
 	can_shoot = GameManager.shooting
+	gun_visible=GameManager.gun_found
+	if gun_visible:
+		visible=true
 	look_at(get_global_mouse_position())
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
