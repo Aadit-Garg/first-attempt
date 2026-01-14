@@ -513,6 +513,7 @@ occluder = SubResource("OccluderPolygon2D_wi0qq")
 occluder = SubResource("OccluderPolygon2D_s3q8p")
 
 [node name="canvas" parent="." instance=ExtResource("2_gew73")]
+visible = false
 offset_left = 527.0
 offset_top = 210.0
 offset_right = 527.0

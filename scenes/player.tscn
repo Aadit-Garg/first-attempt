@@ -383,6 +383,7 @@ scale = Vector2(0.07092104, 0.06646001)
 frame_progress = 0.4107146
 
 [node name="MuzzleLight" type="PointLight2D" parent="gun"]
+visible = false
 position = Vector2(26.000002, -9.536743e-07)
 scale = Vector2(1.019866, 0.609375)
 color = Color(1, 0.7, 0.3, 1)
