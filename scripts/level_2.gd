@@ -11,3 +11,6 @@ func _ready() -> void:
 	glitch_rect.material.set_shader_parameter("infection_level", 0)
 	death_screen.visible=false
 	transition_rect.modulate.a = 0.0
+
+func _on_exit_body_entered(body: Node2D) -> void:
+	glitch_rect.material.set_shader_parameter("infection_level", 0)

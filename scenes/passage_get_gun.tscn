@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b2rf47jknexum"]
+[gd_scene load_steps=31 format=3 uid="uid://b2rf47jknexum"]
 
 [ext_resource type="Script" uid="uid://b7m1huepbxn0m" path="res://scripts/passage_get_gun.gd" id="1_5mm4o"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_31wm6"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://d4ghpgk7gwwdw" path="res://asset/fonts/PixelOperator8.ttf" id="8_cw415"]
 [ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="9_8ditg"]
 [ext_resource type="PackedScene" uid="uid://pm1givo73xs5" path="res://scenes/new_enemy.tscn" id="9_pe7hn"]
+[ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="11_sgvd6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hacd5"]
 texture = ExtResource("1_31wm6")
@@ -355,6 +356,15 @@ fill_from = Vector2(0.5257009, 0.5303738)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cw415"]
 size = Vector2(32, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tkw"]
+size = Vector2(14, 20)
+
+[sub_resource type="Gradient" id="Gradient_sgvd6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n2tkw"]
+gradient = SubResource("Gradient_sgvd6")
+
 [node name="passage_af_lev3" type="Node2D"]
 script = ExtResource("1_5mm4o")
 
@@ -389,6 +399,7 @@ shape = SubResource("RectangleShape2D_wm6tk")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="boundary"]
 position = Vector2(58, -133.5)
 shape = SubResource("RectangleShape2D_kik7s")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="boundary"]
 position = Vector2(-88, -304)
@@ -526,5 +537,34 @@ position = Vector2(174, -463)
 [node name="new_enemy5" parent="enemies" instance=ExtResource("9_pe7hn")]
 position = Vector2(183, -457)
 
+[node name="exit" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
+position = Vector2(-120, -459)
+shape = SubResource("RectangleShape2D_n2tkw")
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("11_sgvd6")]
+
+[node name="dialouge" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="dialouge"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = -267.0
+offset_right = 108.0
+offset_bottom = -244.0
+theme_override_fonts/font = ExtResource("8_cw415")
+theme_override_font_sizes/font_size = 8
+
+[node name="PointLight2D" type="PointLight2D" parent="dialouge"]
+position = Vector2(117.25, -252.99998)
+scale = Vector2(1.7421875, 0.6328127)
+texture = SubResource("GradientTexture2D_n2tkw")
+
 [connection signal="body_entered" from="item_gun" to="." method="_on_item_gun_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
+[connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]

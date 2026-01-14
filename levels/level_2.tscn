@@ -689,5 +689,6 @@ shape = SubResource("RectangleShape2D_m4706")
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("4_wcjpl")]
 
+[connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]

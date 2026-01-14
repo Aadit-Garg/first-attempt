@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddnx4422geobk"]
+[gd_scene load_steps=31 format=3 uid="uid://ddnx4422geobk"]
 
 [ext_resource type="Script" uid="uid://dq7ydtpbgo6sg" path="res://scripts/enemy_up_down.gd" id="1_awlw7"]
 [ext_resource type="Texture2D" uid="uid://b3hntaqybpaxt" path="res://asset/Apocalypse Character Pack/Zombie/Walk.png" id="3_2elu3"]
 [ext_resource type="PackedScene" uid="uid://c3rw3hedq8h8o" path="res://scenes/kill.tscn" id="3_guvka"]
+[ext_resource type="Script" uid="uid://uygoivokoopm" path="res://scripts/enemy_bar.gd" id="4_guvka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awlw7"]
 atlas = ExtResource("3_2elu3")
@@ -161,6 +162,19 @@ animations = [{
 radius = 4.8191
 height = 30.334913
 
+[sub_resource type="Gradient" id="Gradient_x20wv"]
+offsets = PackedFloat32Array(0.028985508, 1)
+colors = PackedColorArray(0.14509805, 0.14509805, 0.14509805, 1, 0.14509805, 0.14509805, 0.14509805, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2elu3"]
+gradient = SubResource("Gradient_x20wv")
+
+[sub_resource type="Gradient" id="Gradient_gtco5"]
+colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0l160"]
+gradient = SubResource("Gradient_gtco5")
+
 [node name="enemy_up_down" type="Node2D"]
 scale = Vector2(0.16000122, 0.16000122)
 script = ExtResource("1_awlw7")
@@ -186,3 +200,14 @@ target_position = Vector2(0, -21)
 position = Vector2(0, 6.2499523)
 scale = Vector2(2.5938258, 3.2965066)
 shape = SubResource("CapsuleShape2D_qflhk")
+
+[node name="enemy_bar" type="TextureProgressBar" parent="."]
+offset_left = -12.499905
+offset_top = -56.249573
+offset_right = 12.499905
+offset_bottom = -52.63864
+pivot_offset = Vector2(0, 3.8146973e-06)
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_2elu3")
+texture_progress = SubResource("GradientTexture2D_0l160")
+script = ExtResource("4_guvka")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv64c8ey3l8hn"]
+[gd_scene load_steps=21 format=3 uid="uid://dv64c8ey3l8hn"]
 
 [ext_resource type="Script" uid="uid://0tfl22pgnmxa" path="res://scripts/enemy_left_right.gd" id="1_4qm2a"]
 [ext_resource type="Texture2D" uid="uid://b3hntaqybpaxt" path="res://asset/Apocalypse Character Pack/Zombie/Walk.png" id="2_fs1eb"]
 [ext_resource type="PackedScene" uid="uid://c3rw3hedq8h8o" path="res://scenes/kill.tscn" id="3_fs1eb"]
+[ext_resource type="Script" uid="uid://uygoivokoopm" path="res://scripts/enemy_bar.gd" id="4_1xdpf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1xdpf"]
 atlas = ExtResource("2_fs1eb")
@@ -86,6 +87,19 @@ animations = [{
 radius = 1.2726684
 height = 6.5440416
 
+[sub_resource type="Gradient" id="Gradient_x20wv"]
+offsets = PackedFloat32Array(0.028985508, 1)
+colors = PackedColorArray(0.14509805, 0.14509805, 0.14509805, 1, 0.14509805, 0.14509805, 0.14509805, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3gab1"]
+gradient = SubResource("Gradient_x20wv")
+
+[sub_resource type="Gradient" id="Gradient_gtco5"]
+colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6fos"]
+gradient = SubResource("Gradient_gtco5")
+
 [node name="enemy_left_right" type="Node2D"]
 scale = Vector2(2.5694892, 2.6346397)
 script = ExtResource("1_4qm2a")
@@ -112,3 +126,14 @@ position = Vector2(-1, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
 position = Vector2(-0.090673685, 1.6360106)
 shape = SubResource("CapsuleShape2D_a56xv")
+
+[node name="enemy_bar" type="TextureProgressBar" parent="."]
+offset_left = -3.5026417
+offset_top = -3.7955854
+offset_right = 1.5567303
+offset_bottom = -3.2211232
+pivot_offset = Vector2(0, 3.8146973e-06)
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_3gab1")
+texture_progress = SubResource("GradientTexture2D_l6fos")
+script = ExtResource("4_1xdpf")
