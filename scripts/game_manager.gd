@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 func reduce_infection():
 	infection_level-=decrease
 	infection_level=clamp(infection_level,0,100)
+
 #ammo on restart 
 func save_ammo_checkpoint() -> void:
 	checkpoint_bullets_in_gun = bullets_in_gun

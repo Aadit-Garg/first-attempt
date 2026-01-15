@@ -15,6 +15,7 @@ var is_frozen := false
 var org_collision_mask: int
 
 func _ready() -> void:
+	speed=35
 	hud.visible=true
 	transition_rect.modulate.a = 0.0
 	death_screen_tyrant.visible=false
@@ -69,11 +70,18 @@ func update_animation(direction: Vector2) -> void:
 
 func _on_tyrant_kill_body_entered(body: Node2D) -> void:
 	if body.name == "player":
+		speed=0
 		death()
 
 func death():
 	hud.visible=false
+	transition_rect.modulate.a = 1.0
+	animation_player.play("fade")
+	await animation_player.animation_finished
 	death_screen_tyrant.visible=true
+	animation_player.play_backwards("fade")
+	await animation_player.animation_finished
+	
 	death_audio.play()
 	await death_audio.finished #will play the desired audio later
 	animation_player.play("fade")
