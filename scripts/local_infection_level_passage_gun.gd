@@ -18,6 +18,7 @@ func death():
 func _on_button_pressed() -> void:
 	print("pressed")
 	GameManager.infection_level = 0
+	GameManager.restore_ammo_checkpoint()
 	death_screen.visible = false
 	get_tree().paused = false
 	get_tree().reload_current_scene()

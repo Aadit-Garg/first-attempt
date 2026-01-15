@@ -9,6 +9,8 @@ func _ready() -> void:
 	GameManager.infection_level=0
 	GameManager.rate=3
 	GameManager.decrease=18
+	GameManager.shooting=true
+	GameManager.gun_found=true
 	glitch_rect.material.set_shader_parameter("infection_level", 0)
 	death_screen.visible=false
 	transition_rect.modulate.a = 0.0

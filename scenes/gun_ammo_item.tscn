@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl1fhu46wcljc"]
+
+[ext_resource type="Script" uid="uid://r58bhvu2u71p" path="res://scripts/gun_ammo_item.gd" id="1_abaqk"]
+[ext_resource type="Texture2D" uid="uid://c85pcmffp4ye3" path="res://asset/gun_ammo.png" id="1_wsb74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsb74"]
+size = Vector2(10, 24)
+
+[node name="gun_ammo_item" type="Area2D"]
+texture_filter = 1
+scale = Vector2(0.32000232, 0.32000232)
+collision_mask = 20
+script = ExtResource("1_abaqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.5624977, 1.1875039)
+scale = Vector2(0.06333087, 0.08028453)
+texture = ExtResource("1_wsb74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_wsb74")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	#invert controls
 	if GameManager.infection_level>=80:
+		
 		direction=-direction
 	#invinvible ability
 	if Input.is_action_pressed("bloom") && GameManager.infection_level<90 && bloom_is_ready:
