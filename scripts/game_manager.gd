@@ -10,6 +10,8 @@ var shooting=false
 var gun_found=false
 var checkpoint_bullets_in_gun: int = -1
 var checkpoint_spare_bullets: int = -1
+var key_found=false
+var went_lv3_2=false
 
 func reset_ammo() -> void:
 	bullets_in_gun = -1

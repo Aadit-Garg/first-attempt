@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cterenn7sh72w"]
+[gd_scene load_steps=75 format=3 uid="uid://cterenn7sh72w"]
 
 [ext_resource type="Script" uid="uid://b7uhhc2cm1vfh" path="res://scripts/level_3.gd" id="1_ofchu"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vkd0v"]
@@ -490,6 +490,12 @@ size = Vector2(14, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr8as"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38ep1"]
+size = Vector2(15, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nc8rg"]
+size = Vector2(158, 77)
+
 [node name="level_3" type="Node2D"]
 script = ExtResource("1_ofchu")
 metadata/_edit_horizontal_guides_ = [56.0]
@@ -513,6 +519,7 @@ occluder = SubResource("OccluderPolygon2D_wi0qq")
 occluder = SubResource("OccluderPolygon2D_s3q8p")
 
 [node name="canvas" parent="." instance=ExtResource("2_gew73")]
+visible = false
 offset_left = 527.0
 offset_top = 210.0
 offset_right = 527.0
@@ -826,6 +833,7 @@ script = ExtResource("7_lfnxh")
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -886,6 +894,7 @@ position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_glbqa")
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_0unm6")]
+visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -894,6 +903,43 @@ position = Vector2(312, -139)
 shape = SubResource("RectangleShape2D_hr8as")
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("5_q42ux")]
+visible = false
+
+[node name="level_3_to_2" type="Area2D" parent="."]
+position = Vector2(185, 357)
+collision_mask = 20
+
+[node name="door_open" type="Sprite2D" parent="level_3_to_2"]
+visible = false
+texture_filter = 1
+position = Vector2(-1, 0)
+texture = ExtResource("1_vkd0v")
+region_enabled = true
+region_rect = Rect2(112.09273, 12.660951, 15.694962, 19.728706)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level_3_to_2"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_38ep1")
+
+[node name="label_show" type="Area2D" parent="."]
+position = Vector2(237, -104)
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="label_show"]
+position = Vector2(69, 30.5)
+shape = SubResource("RectangleShape2D_nc8rg")
+
+[node name="door_closed" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(312, -122)
+texture = ExtResource("1_vkd0v")
+region_enabled = true
+region_rect = Rect2(128.78825, 12.602062, 14.979935, 19.538986)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(318, 453)
 
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="level_3_to_2" to="." method="_on_level_3_to_2_body_entered"]
+[connection signal="body_entered" from="label_show" to="." method="_on_label_show_body_entered"]

@@ -354,7 +354,9 @@ size = Vector2(33, 65)
 size = Vector2(16.5, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhnv2"]
-size = Vector2(14, 20)
+size = Vector2(14, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vru0x"]
 
 [node name="level_4" type="Node2D"]
 script = ExtResource("1_qhnv2")
@@ -503,16 +505,20 @@ position = Vector2(-207, -98)
 [node name="HUD" parent="." instance=ExtResource("9_52a3b")]
 
 [node name="canvas" parent="." instance=ExtResource("10_3ff1r")]
+visible = false
 offset_left = 15.0
 offset_top = 143.0
 offset_right = 15.0
 offset_bottom = 143.0
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("11_cmohj")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -521,6 +527,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/death_screen"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -541,6 +548,7 @@ text = "YOU DIED!!!"
 
 [node name="Button" type="Button" parent="CanvasLayer/death_screen"]
 process_mode = 3
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -887,11 +895,31 @@ shape = SubResource("RectangleShape2D_mgx0j")
 collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
-position = Vector2(664, 53)
+position = Vector2(664, 54.5)
 shape = SubResource("RectangleShape2D_qhnv2")
 
 [node name="local_infection_level" type="Node2D" parent="."]
 script = ExtResource("14_vru0x")
 
+<<<<<<< Updated upstream
+=======
+[node name="door_closed" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(664, 54)
+texture = ExtResource("1_fwt2v")
+region_enabled = true
+region_rect = Rect2(128.5188, 12.507394, 15.258148, 19.087494)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(664, 33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_vru0x")
+
+[node name="door_open" type="Sprite2D" parent="."]
+
+>>>>>>> Stashed changes
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
 [connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
