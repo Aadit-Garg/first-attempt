@@ -519,7 +519,6 @@ occluder = SubResource("OccluderPolygon2D_wi0qq")
 occluder = SubResource("OccluderPolygon2D_s3q8p")
 
 [node name="canvas" parent="." instance=ExtResource("2_gew73")]
-visible = false
 offset_left = 527.0
 offset_top = 210.0
 offset_right = 527.0
@@ -826,6 +825,38 @@ position = Vector2(1046, -10)
 [node name="Item13" parent="items" instance=ExtResource("4_bmgug")]
 position = Vector2(1005, 324)
 
+[node name="Item14" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(506, 47)
+
+[node name="Item15" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(619, -14)
+
+[node name="Item16" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(729, 83)
+
+[node name="Item17" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(951, 227)
+
+[node name="Item18" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(815, 455)
+
+[node name="Item19" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(664, 245)
+
+[node name="Item20" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(530, 261)
+
+[node name="Item21" parent="items" instance=ExtResource("4_bmgug")]
+z_index = 4
+position = Vector2(564, 426)
+
 [node name="local_infection_level" type="Node2D" parent="."]
 script = ExtResource("7_lfnxh")
 
@@ -833,7 +864,6 @@ script = ExtResource("7_lfnxh")
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -894,7 +924,6 @@ position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_glbqa")
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_0unm6")]
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -903,7 +932,6 @@ position = Vector2(312, -139)
 shape = SubResource("RectangleShape2D_hr8as")
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("5_q42ux")]
-visible = false
 
 [node name="level_3_to_2" type="Area2D" parent="."]
 position = Vector2(185, 357)

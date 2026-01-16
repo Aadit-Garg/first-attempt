@@ -454,7 +454,6 @@ scale = Vector2(-1.4000022, 4.200039)
 zoom = Vector2(5, 5)
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
-visible = false
 offset_left = 89.0
 offset_top = -91.0
 offset_right = 89.0

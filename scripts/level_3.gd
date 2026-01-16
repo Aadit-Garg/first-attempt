@@ -14,9 +14,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	exit.collision_mask=0
-	level_3_to_2.collision_mask=0
+	#level_3_to_2.collision_mask=0
 	GameManager.infection_level=0
-	GameManager.rate=0
+	GameManager.rate=3
 	GameManager.decrease=18
 	GameManager.shooting=true
 	GameManager.gun_found=true
@@ -25,6 +25,7 @@ func _ready() -> void:
 	transition_rect.modulate.a = 0.0
 	if GameManager.key_found:
 		door_closed.visible=false
+		exit.collision_mask=org_exit
 		var tyrant = tyrant_scene.instantiate()
 		get_tree().get_current_scene().add_child(tyrant)
 		tyrant.global_position=$Marker2D.global_position
