@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bot7k6rv4vx8m"]
+[gd_scene load_steps=54 format=3 uid="uid://bot7k6rv4vx8m"]
 
 [ext_resource type="Script" uid="uid://bmugr325f5bf6" path="res://scripts/level_2.gd" id="1_at1ld"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_mi4ay"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="11_vm7no"]
 [ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="12_hbb88"]
 [ext_resource type="Texture2D" uid="uid://djc7nmpltqxp5" path="res://asset/Apocalypse Character Pack/pixel_art_keys/key_big.png" id="14_5orea"]
+[ext_resource type="Texture2D" uid="uid://dohg3ewonf6y6" path="res://asset/Apocalypse Character Pack/Gemini_Generated_Image_3o9p6n3o9p6n3o9p-removebg-preview.png" id="16_w200a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqqg8"]
 texture = ExtResource("1_mi4ay")
@@ -514,6 +515,7 @@ scale = Vector2(-1.4000022, 4.200039)
 zoom = Vector2(5, 5)
 
 [node name="canvas" parent="." instance=ExtResource("3_v5uil")]
+visible = false
 offset_left = 89.0
 offset_top = -91.0
 offset_right = 89.0
@@ -746,7 +748,6 @@ text = "Restart"
 visible = false
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_hbb88")]
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -777,6 +778,49 @@ shape = SubResource("RectangleShape2D_4xp61")
 [node name="decoration" type="Node2D" parent="."]
 
 [node name="lash1" type="Sprite2D" parent="decoration"]
+
+[node name="decoration2" type="Node" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.39215687, 0.4627451, 0.38039216, 0.7137255)
+position = Vector2(-5.9999847, -69.99999)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("3_0ourt")
+region_enabled = true
+region_rect = Rect2(514, 205.25, 152, 53)
+
+[node name="Sprite2D" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.3957131, 0.45551097, 0.4326534, 1)
+position = Vector2(102.00001, -280)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("3_0ourt")
+region_enabled = true
+region_rect = Rect2(573.3656, 108.60972, 86.46704, 90.048546)
+
+[node name="Sprite2D3" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.7137932, 1.0701526, 1.8247963, 1)
+texture_filter = 1
+position = Vector2(-15.999985, -9.000001)
+scale = Vector2(0.16032606, 0.123000026)
+texture = ExtResource("16_w200a")
+region_enabled = true
+region_rect = Rect2(169.5, 63, 184, 125)
+
+[node name="Sprite2D4" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.979316, 1.391575, 1.8247963, 1)
+position = Vector2(196.00002, -215.00002)
+scale = Vector2(0.12430532, 0.10204068)
+texture = ExtResource("16_w200a")
+region_enabled = true
+region_rect = Rect2(165, 202, 180, 147)
+
+[node name="Sprite2D5" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.87471884, 1.2233139, 1.365921, 1)
+position = Vector2(90.56249, -104.0625)
+scale = Vector2(0.19589551, 0.2101064)
+texture = ExtResource("3_0ourt")
+region_enabled = true
+region_rect = Rect2(493, 270, 67, 47)
 
 [connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
