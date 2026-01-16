@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 50.0
+@export var speed := 40.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var kill: Area2D = $kill
 @onready var enemy_bar: TextureProgressBar = $enemy_bar
