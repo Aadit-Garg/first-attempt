@@ -159,20 +159,20 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qflhk"]
-radius = 4.8191
-height = 30.334913
+radius = 7.22865
+height = 37.918644
 
 [sub_resource type="Gradient" id="Gradient_x20wv"]
 offsets = PackedFloat32Array(0.028985508, 1)
 colors = PackedColorArray(0.14509805, 0.14509805, 0.14509805, 1, 0.14509805, 0.14509805, 0.14509805, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2elu3"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_guvka"]
 gradient = SubResource("Gradient_x20wv")
 
 [sub_resource type="Gradient" id="Gradient_gtco5"]
 colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0l160"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2elu3"]
 gradient = SubResource("Gradient_gtco5")
 
 [node name="enemy_up_down" type="Node2D"]
@@ -181,8 +181,8 @@ script = ExtResource("1_awlw7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4.7683716e-07, 0)
-scale = Vector2(3.2006772, 4.315)
+position = Vector2(3.1249828, 18.604603)
+scale = Vector2(4.492153, 5.4777875)
 sprite_frames = SubResource("SpriteFrames_8n1ic")
 animation = &"walk_up"
 
@@ -197,17 +197,17 @@ target_position = Vector2(0, -21)
 [node name="kill" parent="." instance=ExtResource("3_guvka")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
-position = Vector2(0, 6.2499523)
+position = Vector2(-1.6155871e-27, 31.249762)
 scale = Vector2(2.5938258, 3.2965066)
 shape = SubResource("CapsuleShape2D_qflhk")
 
 [node name="enemy_bar" type="TextureProgressBar" parent="."]
-offset_left = -12.499905
-offset_top = -56.249573
-offset_right = 12.499905
-offset_bottom = -52.63864
+offset_left = -49.999603
+offset_top = -68.74948
+offset_right = 32.80651
+offset_bottom = -59.470707
 pivot_offset = Vector2(0, 3.8146973e-06)
 nine_patch_stretch = true
-texture_under = SubResource("GradientTexture2D_2elu3")
-texture_progress = SubResource("GradientTexture2D_0l160")
+texture_under = SubResource("GradientTexture2D_guvka")
+texture_progress = SubResource("GradientTexture2D_2elu3")
 script = ExtResource("4_guvka")

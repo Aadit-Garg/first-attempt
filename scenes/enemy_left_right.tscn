@@ -87,18 +87,18 @@ animations = [{
 radius = 1.2726684
 height = 6.5440416
 
-[sub_resource type="Gradient" id="Gradient_x20wv"]
+[sub_resource type="Gradient" id="Gradient_1xdpf"]
 offsets = PackedFloat32Array(0.028985508, 1)
 colors = PackedColorArray(0.14509805, 0.14509805, 0.14509805, 1, 0.14509805, 0.14509805, 0.14509805, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3gab1"]
-gradient = SubResource("Gradient_x20wv")
+gradient = SubResource("Gradient_1xdpf")
 
-[sub_resource type="Gradient" id="Gradient_gtco5"]
+[sub_resource type="Gradient" id="Gradient_3gab1"]
 colors = PackedColorArray(0.96862745, 0.09803922, 0.09803922, 1, 0.96862745, 0.09803922, 0.09803922, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l6fos"]
-gradient = SubResource("Gradient_gtco5")
+gradient = SubResource("Gradient_3gab1")
 
 [node name="enemy_left_right" type="Node2D"]
 scale = Vector2(2.5694892, 2.6346397)
