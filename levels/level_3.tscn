@@ -519,7 +519,6 @@ occluder = SubResource("OccluderPolygon2D_wi0qq")
 occluder = SubResource("OccluderPolygon2D_s3q8p")
 
 [node name="canvas" parent="." instance=ExtResource("2_gew73")]
-visible = false
 offset_left = 527.0
 offset_top = 210.0
 offset_right = 527.0
@@ -833,7 +832,6 @@ script = ExtResource("7_lfnxh")
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -894,7 +892,6 @@ position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_glbqa")
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_0unm6")]
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -903,14 +900,12 @@ position = Vector2(312, -139)
 shape = SubResource("RectangleShape2D_hr8as")
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("5_q42ux")]
-visible = false
 
 [node name="level_3_to_2" type="Area2D" parent="."]
 position = Vector2(185, 357)
 collision_mask = 20
 
 [node name="door_open" type="Sprite2D" parent="level_3_to_2"]
-visible = false
 texture_filter = 1
 position = Vector2(-1, 0)
 texture = ExtResource("1_vkd0v")

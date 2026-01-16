@@ -12,7 +12,11 @@ const SPEED = 60.0
 func _ready() -> void:
 	if GlobalScript.checkpoint_pos!=Vector2(-999,-999):
 		global_position=GlobalScript.checkpoint_pos
-
+	# Initialize last mouse position to prevent false "moved" detection
+	last_mouse_position = get_global_mouse_position()
+var last_look_direction := Vector2.DOWN  # Default facing direction
+var last_mouse_position := Vector2.ZERO  # Track mouse movement
+var using_controller := true  # Start with controller mode (switch to mouse when mouse moves)
 func _physics_process(delta: float) -> void:
 	#enter movement
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -26,27 +30,63 @@ func _physics_process(delta: float) -> void:
 		collision_mask=1       #we will change it when we add enemies
 		animated_sprite.modulate.a=0.2
 		timer.start()
-	var mouse_pos = get_global_mouse_position()
-	velocity+=Vector2(delta,delta)#make movement feel same for different fps
+	#var look_direction := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	#var aim_target: Vector2
+	#var angle: float
+## Check if joystick is being used (deadzone check)
+	#if look_direction.length() > 0.2:
+		## Controller: Use joystick direction
+		#aim_target = global_position + look_direction * 100
+		#angle = look_direction.angle()
+	#else:
+		## Keyboard/Mouse: Use mouse position
+		#aim_target = get_global_mouse_position()
+		#angle = (aim_target - global_position).angle()
+	#point_light.look_at(aim_target)
+	#var snapped_angle = snapped(angle, PI / 4)
+	#var look_dir = Vector2.from_angle(snapped_angle).round()
+	#var x = look_dir.x
+	#var y = look_dir.y
+	# Check for controller joystick input
+	var joy_look := Vector2(
+		Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+		Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	)
 	
-	#Footstep sound
-	if direction != Vector2.ZERO:
-		if not footstep_player.playing:
-			footstep_player.pitch_scale = randf_range(0.9, 1.1)
-			footstep_player.play()
-	else:
-		footstep_player.stop()
+	# Check if mouse has moved (to detect switching from controller to mouse)
+	var current_mouse_pos := get_global_mouse_position()
+	var mouse_moved := current_mouse_pos.distance_to(last_mouse_position) > 10.0
+	if mouse_moved:
+		last_mouse_position = current_mouse_pos
+		using_controller = false  # Switch to mouse mode
 
-	#light will look here
-	point_light.look_at(mouse_pos)
-	var look_vec = mouse_pos - global_position
-	var angle = look_vec.angle()
+	var aim_target: Vector2
+	var angle: float
+
+	if joy_look.length() > 0.2:
+		# Controller joystick is being used
+		using_controller = true
+		last_look_direction = joy_look
+		aim_target = global_position + joy_look * 100
+		angle = joy_look.angle()
+	elif using_controller:
+		# Joystick released but was using controller - keep last direction
+		aim_target = global_position + last_look_direction * 100
+		angle = last_look_direction.angle()
+	else:
+		# Mouse mode - always follow current mouse position
+		aim_target = current_mouse_pos
+		var mouse_dir = (aim_target - global_position).normalized()
+		if mouse_dir.length() > 0.1:
+			last_look_direction = mouse_dir
+		angle = (aim_target - global_position).angle()
+
+	point_light.look_at(aim_target)
 	var snapped_angle = snapped(angle, PI / 4)
 	var look_dir = Vector2.from_angle(snapped_angle).round()
-	
+
 	var x = look_dir.x
 	var y = look_dir.y
-	
 	##horizontal flipping for dl,l,ul
 	#if x < 0:
 		#animated_sprite.flip_h = true

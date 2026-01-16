@@ -39,11 +39,16 @@ func _ready() -> void:
 		spare_bullets = magazine_size   # Start with spare bullets (5)
 	# Emit initial ammo state
 	call_deferred("_emit_ammo_state")
+	# Initialize last mouse position to prevent false "moved" detection
+	last_mouse_position = get_global_mouse_position()
 
 func _emit_ammo_state() -> void:
 	ammo_changed.emit(bullets_in_gun, spare_bullets)
 	needs_reload.emit(bullets_in_gun == 0 and spare_bullets > 0)
-
+var last_look_direction = Vector2(0,0)
+var current_aim_target = Vector2(0,0)
+var last_mouse_position := Vector2.ZERO  # Track mouse movement
+var using_controller := true  # Start with controller mode (switch to mouse when mouse moves)
 func _process(delta: float) -> void:
 	can_shoot = GameManager.shooting
 	gun_visible=GameManager.gun_found
@@ -51,7 +56,34 @@ func _process(delta: float) -> void:
 		visible=true
 	else:
 		visible=false
-	look_at(get_global_mouse_position())
+	# Check for controller joystick input
+	var joy_look := Vector2(
+		Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+		Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	)
+	
+	# Check if mouse has moved (to detect switching from controller to mouse)
+	var current_mouse_pos := get_global_mouse_position()
+	var mouse_moved := current_mouse_pos.distance_to(last_mouse_position) > 10.0
+	if mouse_moved:
+		last_mouse_position = current_mouse_pos
+		using_controller = false  # Switch to mouse mode
+	
+	if joy_look.length() > 0.2:
+		# Controller joystick is being used
+		using_controller = true
+		last_look_direction = joy_look.normalized()
+		current_aim_target = global_position + joy_look * 100
+	elif using_controller:
+		# Joystick released but was using controller - keep last direction
+		current_aim_target = global_position + last_look_direction * 100
+	else:
+		# Mouse mode - always follow current mouse position
+		current_aim_target = current_mouse_pos
+		var mouse_dir = (current_aim_target - global_position).normalized()
+		if mouse_dir.length() > 0.1:
+			last_look_direction = mouse_dir
+	look_at(current_aim_target)
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
 		var local_cp = to_local(cp)
@@ -98,7 +130,7 @@ func shoot() -> void:
 	
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position
-	bullet.direction = (get_global_mouse_position() - global_position).normalized()
+	bullet.direction = last_look_direction
 	bullet.rotation = bullet.direction.angle()
 	
 	get_tree().current_scene.add_child(bullet)
