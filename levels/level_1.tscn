@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dvq846ck6dmhq"]
+[gd_scene load_steps=33 format=3 uid="uid://dvq846ck6dmhq"]
 
 [ext_resource type="Script" uid="uid://4hy4ihfvoxa" path="res://scripts/level_1.gd" id="1_3sk1a"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_vn7o3"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://deeb8xv0lhdxh" path="res://scenes/hud.tscn" id="11_5ot28"]
 [ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="12_aerfg"]
 [ext_resource type="PackedScene" uid="uid://bnd0jh08f5py3" path="res://scenes/crt_screen.tscn" id="13_nmsli"]
+[ext_resource type="Texture2D" uid="uid://bjrpc3rv5difk" path="res://asset/Apocalypse Character Pack/Gemini_Generated_Image_ywmgoywmgoywmgoy-removebg-preview.png" id="14_betor"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vn7o3"]
 texture = ExtResource("1_vn7o3")
@@ -448,6 +449,25 @@ offset_top = -8.0
 offset_right = -2.0
 offset_bottom = -8.0
 
+[node name="decoration" type="Node" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="decoration"]
+modulate = Color(0.39215687, 0.4627451, 0.38039216, 0.7137255)
+position = Vector2(103.00001, -85)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("14_betor")
+region_enabled = true
+region_rect = Rect2(514, 205.25, 152, 53)
+
+[node name="Sprite2D" type="Sprite2D" parent="decoration"]
+modulate = Color(0.3957131, 0.45551097, 0.4326534, 1)
+texture_filter = 1
+position = Vector2(211.03064, -11.939053)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("14_betor")
+region_enabled = true
+region_rect = Rect2(573.3656, 108.60972, 86.46704, 90.048546)
+
 [node name="enemies" type="Node" parent="."]
 
 [node name="enemy_left_right2" parent="enemies" instance=ExtResource("4_3sk1a")]
@@ -491,6 +511,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3sk1a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 process_mode = 3

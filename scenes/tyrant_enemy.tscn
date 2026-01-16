@@ -105,6 +105,7 @@ scale = Vector2(0.44000354, 0.44000354)
 script = ExtResource("1_bbou3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 9
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bpssy")
 animation = &"walk_up"
