@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dra2v1uqtx3bq"]
+[gd_scene load_steps=42 format=3 uid="uid://dra2v1uqtx3bq"]
 
 [ext_resource type="Script" uid="uid://y7kw7rj4qeyw" path="res://scripts/level_5.gd" id="1_a58qw"]
 [ext_resource type="Texture2D" uid="uid://xosi36c6v41j" path="res://asset/sewer_1.png" id="1_erq1u"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://ct7fx103eu20p" path="res://scenes/item.tscn" id="13_hv08k"]
 [ext_resource type="PackedScene" uid="uid://b7gy0dhrbd1r" path="res://scenes/tyrant_enemy.tscn" id="14_p0827"]
 [ext_resource type="PackedScene" uid="uid://dtr586yu3mi35" path="res://scenes/level_transition.tscn" id="15_hv08k"]
+[ext_resource type="Texture2D" uid="uid://bjrpc3rv5difk" path="res://asset/Apocalypse Character Pack/Gemini_Generated_Image_ywmgoywmgoywmgoy-removebg-preview.png" id="16_brp6y"]
+[ext_resource type="Texture2D" uid="uid://dohg3ewonf6y6" path="res://asset/Apocalypse Character Pack/Gemini_Generated_Image_3o9p6n3o9p6n3o9p-removebg-preview.png" id="17_mgx0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b15rf"]
 texture = ExtResource("1_erq1u")
@@ -1638,7 +1640,7 @@ position = Vector2(1752.125, -1487.75)
 shape = SubResource("RectangleShape2D_26h77")
 
 [node name="player" parent="." instance=ExtResource("2_yaabq")]
-position = Vector2(-18, -2)
+position = Vector2(-18, -19)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
@@ -1646,6 +1648,7 @@ zoom = Vector2(5, 5)
 [node name="HUD" parent="." instance=ExtResource("3_dhnqt")]
 
 [node name="canvas" parent="." instance=ExtResource("4_r02ll")]
+visible = false
 offset_left = 15.0
 offset_top = 143.0
 offset_right = 15.0
@@ -1655,6 +1658,7 @@ offset_bottom = 143.0
 script = ExtResource("5_g5mgy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -1704,6 +1708,7 @@ theme_override_font_sizes/font_size = 32
 text = "Restart"
 
 [node name="CanvasLayer3" parent="." instance=ExtResource("7_ldpug")]
+visible = false
 
 [node name="enemies" type="Node2D" parent="."]
 
@@ -2067,6 +2072,188 @@ position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_ij65d")
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("15_hv08k")]
+
+[node name="decoration2" type="Node" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.39215687, 0.4627451, 0.38039216, 0.7137255)
+position = Vector2(77.99999, -60)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(514, 205.25, 152, 53)
+
+[node name="Sprite2D" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.3957131, 0.45551097, 0.4326534, 1)
+position = Vector2(55.000004, -270.99997)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(573.3656, 108.60972, 86.46704, 90.048546)
+
+[node name="Sprite2D3" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.7137932, 1.0701526, 1.8247963, 1)
+texture_filter = 1
+position = Vector2(434.00006, -194)
+scale = Vector2(0.16032606, 0.123000026)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(169.5, 63, 184, 125)
+
+[node name="Sprite2D4" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.979316, 1.391575, 1.8247963, 1)
+position = Vector2(510.00003, -484.00003)
+scale = Vector2(0.12430532, 0.10204068)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(165, 202, 180, 147)
+
+[node name="Sprite2D5" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.87471884, 1.2233139, 1.365921, 1)
+position = Vector2(81.00001, -58.000008)
+scale = Vector2(0.19589551, 0.2101064)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(493, 270, 67, 47)
+
+[node name="Sprite2D7" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(-37, -62)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D8" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(-74, -184)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D9" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(742, -20.000015)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D10" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(296, -388)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D6" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.84358025, 0.99886644, 1.4369954, 1)
+position = Vector2(200.00002, -99)
+scale = Vector2(0.13474025, 0.11422413)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(354, 67, 154, 116)
+
+[node name="Sprite2D11" type="Sprite2D" parent="decoration2"]
+modulate = Color(0.84358025, 0.99886644, 1.4369954, 1)
+position = Vector2(414, -1201)
+scale = Vector2(0.11282454, 0.10883622)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(354, 67, 154, 116)
+
+[node name="decoration3" type="Node" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.39215687, 0.4627451, 0.38039216, 0.7137255)
+position = Vector2(-21, -280.99997)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(514, 205.25, 152, 53)
+
+[node name="Sprite2D" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.3957131, 0.45551097, 0.4326534, 1)
+position = Vector2(170, -298)
+scale = Vector2(0.21001446, 0.2100145)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(573.3656, 108.60972, 86.46704, 90.048546)
+
+[node name="Sprite2D3" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.7137932, 1.0701526, 1.8247963, 1)
+texture_filter = 1
+position = Vector2(695.00006, -1810.0002)
+scale = Vector2(0.16032606, 0.123000026)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(169.5, 63, 184, 125)
+
+[node name="Sprite2D4" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.979316, 1.391575, 1.8247963, 1)
+position = Vector2(-35.999985, -340.00003)
+scale = Vector2(0.12430532, 0.10204068)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(165, 202, 180, 147)
+
+[node name="Sprite2D5" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.87471884, 1.2233139, 1.365921, 1)
+position = Vector2(90.56249, -104.0625)
+scale = Vector2(0.19589551, 0.2101064)
+texture = ExtResource("16_brp6y")
+region_enabled = true
+region_rect = Rect2(493, 270, 67, 47)
+
+[node name="Sprite2D7" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(-53, -73)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D8" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(-84, -186)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D9" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(172, -637)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D10" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.6117647, 0.6784314, 1, 1)
+position = Vector2(952, -354)
+scale = Vector2(0.11643834, 0.10833331)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(19, 66, 146, 120)
+
+[node name="Sprite2D6" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.84358025, 0.99886644, 1.4369954, 1)
+position = Vector2(305, -9)
+scale = Vector2(0.13474025, 0.11422413)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(354, 67, 154, 116)
+
+[node name="Sprite2D11" type="Sprite2D" parent="decoration3"]
+modulate = Color(0.84358025, 0.99886644, 1.4369954, 1)
+position = Vector2(822, -786)
+scale = Vector2(0.11282454, 0.10883622)
+texture = ExtResource("17_mgx0j")
+region_enabled = true
+region_rect = Rect2(354, 67, 154, 116)
 
 [connection signal="pressed" from="CanvasLayer/death_screen/Button" to="local_infection_level" method="_on_button_pressed"]
 [connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
