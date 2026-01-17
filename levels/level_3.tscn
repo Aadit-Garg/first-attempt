@@ -588,7 +588,6 @@ occluder = SubResource("OccluderPolygon2D_wi0qq")
 occluder = SubResource("OccluderPolygon2D_s3q8p")
 
 [node name="canvas" parent="." instance=ExtResource("2_gew73")]
-visible = false
 offset_left = 527.0
 offset_top = 210.0
 offset_right = 527.0
@@ -965,7 +964,6 @@ THE DOOR TO THE PAST AND
 FIND THE KEY"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="death_screen" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -1041,6 +1039,7 @@ position = Vector2(185, 357)
 collision_mask = 20
 
 [node name="door_open" type="Sprite2D" parent="level_3_to_2"]
+visible = false
 texture_filter = 1
 position = Vector2(-1, 0)
 texture = ExtResource("1_vkd0v")

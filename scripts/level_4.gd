@@ -10,7 +10,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.infection_level=0
-	GameManager.rate=3
+	GameManager.rate=2
 	GameManager.decrease=18
 	GameManager.shooting=true
 	GameManager.gun_found=true

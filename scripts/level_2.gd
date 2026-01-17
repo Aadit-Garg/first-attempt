@@ -17,7 +17,7 @@ func _ready() -> void:
 		key.visible=false
 		key.collision_mask=0
 	GameManager.infection_level=0
-	GameManager.rate=5
+	GameManager.rate=4
 	glitch_rect.material.set_shader_parameter("infection_level", 0)
 	death_screen.visible=false
 	transition_rect.modulate.a = 0.0

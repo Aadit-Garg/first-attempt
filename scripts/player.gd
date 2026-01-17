@@ -2,7 +2,7 @@ extends CharacterBody2D
 var original_collision_layer=collision_layer
 var original_collision_mask=collision_mask
 var bloom_is_ready=true
-const SPEED = 60.0
+const SPEED = 70.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var timer: Timer = $Timer

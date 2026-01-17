@@ -15,7 +15,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	exit.collision_mask=0
-	#level_3_to_2.collision_mask=0
+	level_3_to_2.collision_mask=0
 	GameManager.infection_level=0
 	GameManager.rate=2
 	scroll.visible=false
